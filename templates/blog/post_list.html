@@ -1,0 +1,89 @@
+{% extends 'blog/article.html' %}
+{% load staticfiles %}
+{% load countries %}
+{% block content %}
+    {% for p in post %}
+{#        <!-- Comments -->#}
+{#        <h4>{{ p.category }}</h4>#}
+				<div class="comments">
+
+{#					<!-- Comment -->#}
+					<div class="comment">
+						<div class="comm_hdr">
+                            <a href="{% url 'post_detail' pk=p.pk %}"><h3>{{ p.title }}</h3></a>
+{#                            <a href="">{{ p.country }}</a>#}
+							<p>{{ p.text|truncatewords:3 }} <span> | {{ p.published_date }}</span></p>
+						</div>
+{#						<div class="avat">#}
+{#							<img src="{% static 'blog/images/avatar.jpg' %}" alt="avatar" />#}
+{#							<img src="{% static 'blog/images/avatar_frame.png' %}" alt="avatar_frame" class="avatar_frame" />#}
+{#						</div>#}
+					</div>
+
+				</div>
+        <div class="post">
+            <div class="post_inf">
+                <span class="posc"> </span><br/>
+                <span class="pst">Это было в: {{ p.country }}</span><br/>
+{#                <span class="pst">Дата публикации: </span><br/>#}
+                <span class="pst">Комментариев: {{ p.comments.count }}</span><br/>
+                <span class="posn">Автор: {{ p.author }}</span><br/>
+
+                <hr width="150" align="left" size="2" color="grey">
+            </div>
+        </div>
+    {% endfor %}
+
+{#    <div id="rcnt">#}
+{#    {% for S in posts %}#}
+{##}
+{#            <a>{{ S.COUNTRY.name }}</a>#}
+{#        <a class="pop_posts" href="{% url "p" id=post.pk %}>{{ context }}</a>#}
+{#        <a href="{% url "post" id=post.pk %}">{{ post.title }}</a>#}
+{##}
+{#    {% endfor %}#}
+{#    </div>#}
+
+
+    <div class="add_post" style="text-align: center">
+        <a href="{% url 'post_new' %}">Добавить запись в блог</a>
+    </div>
+    <br/>
+
+    <!-- Traveller -->
+{% get_country 'UA' as country %}
+{#    {% block category %}#}
+    <div id="rcnt">
+
+
+{#         <ul>#}
+{#                {% for s in all_countries %}#}
+{#                    <li> {{ count }}</li>#}
+{#                    <li><a class="pop_posts" href="{% url "obtain_countries" pk=s.pk %}"> {{ s.COUNTRY }}</a></li>#}
+{#                {% endfor %}#}
+{#            </ul>#}
+{#    {{ }}#}
+    </div>
+{#    {% endblock %}#}
+
+    <!-- Pagination -->
+    <div class="pagination">
+    <br/>
+        {% if post.has_previous %}
+            <span class="prev"><a href="{% url "post_list" %}?page={{ post.previous_page_number }}">назад</a></span>
+        {% endif %}
+
+    <span class="current">
+            стр. {{ post.number }} из {{ post.paginator.num_pages }}
+    </span>
+
+       {% if post.has_next %}
+            <a href="?page={{ post.next_page_number }}">вперед</a>
+       {% endif %}
+
+        {% for pn in post.paginator.page_range %}
+            <a href="{% url "post_list" %}?page={{ pn }}">{{ pn }}</a>
+        {% endfor %}
+    </div>
+
+{% endblock %}

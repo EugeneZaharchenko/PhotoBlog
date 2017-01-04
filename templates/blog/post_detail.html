@@ -1,0 +1,51 @@
+{% extends 'blog/article.html' %}
+
+
+{% block content %}
+{#    <img src="{% static '../blog/images/art_pic1.jpg' %}" alt="фото к посту" />#}
+    <div class="post">
+        {% if post.published_date %}
+            <div class="date">
+                {{ post.published_date }}
+            </div>
+        {% endif %}
+{#        <div id="glyph">#}
+{#            <a class="btn btn-default" #}
+
+{#        </div>#}
+        <h2> <span class="posn"> {{ post.title }} </span></h2>
+{#        <h3><span class="pst">Страна: {{ post.COUNTRY.name }}</span></h3><br/>#}
+
+        <!-- Post Content -->
+        <p class="comm_txt">{{ post.text|linebreaksbr }}</p> <br/>
+        <a href="{% url 'post_edit' pk=post.pk %}">Редактировать</a><br/>
+        <a href="{% url 'post_remove' pk=post.pk %}">Удалить</a><br/>
+{#        <a class="btn btn-default" href="{% url 'post_remove' pk=post.pk %}"><span class="glyphicon glyphicon-remove"></span></a>#}
+        <a class="btn btn-default" href="{% url 'add_comment_to_post' pk=post.pk %}">Комментировать</a>
+    </div>
+    <hr>
+<h3> <span class="posn"> Комментарии: </span></h3>
+{% for comment in post.comments.all %}
+    <div class="comment">
+        <div class="date">{{ comment.created_date }}</div>
+        <strong>{{ comment.author }}</strong>
+        <p><span class="posc">{{ comment.text|linebreaks }}</span></p>
+    </div>
+{% empty %}
+    <p>Еще не комментировали :( Смелее!</p>
+{% endfor %}
+
+    <!-- Traveller -->
+
+{#    <div id="rcnt">#}
+{#    <h2>Traveller</h2>#}
+{#        <a class="pop_posts" >{{ post.COUNTRY.name }}</a>#}
+{#    </div>#}
+{#    href="{% url 'post_list.COUNTRY.name' pk=post.pk%}"#}
+
+    <h2>
+        <a href="{% url 'post_new' %}">Добавить запись в блог</a>
+    </h2>
+{% endblock %}
+
+<hr>

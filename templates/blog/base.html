@@ -1,0 +1,264 @@
+{% load i18n %}
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta content="true" name="mssmarttagspreventparsing" />
+        <meta http-equiv="imagetoolbar" content="no" />
+        <title>ФОТОблог</title>
+        <link href="{% static 'blog/css/style.css' %}" rel="stylesheet" type="text/css" />
+
+        <!-- IE fixes -->
+        <!--[if IE 7]>
+        <style type="text/css">
+                #logo {top:50px;}
+                #menu {margin:50px 0 0 500px;}
+        </style>
+        <![endif]-->
+        <!--[if lte IE 6]>
+        <style type="text/css">
+                #hdl {margin:0px 0 0 250px;}
+                #logo {top:50px;}
+                #menu {margin:50px 0 0 500px;}
+        </style>
+        <script src="js/DD_belatedPNG_0.0.7a-min.js" type="text/javascript"></script>
+        <script type="text/javascript">
+                DD_belatedPNG.fix('#logo, .mh, .mw, .mt, .mi, .rss_twitt, .rss, #TwitterCounter, .avatar_frame, .pop_posts');
+        </script>
+        <![endif]-->
+
+{#        <script type="text/javascript">#}
+{#        /*#}
+{#         * Simple JS function for setting the search value#}
+{#         */#}
+{#        function clS(t){#}
+{#                var srch = document.getElementById('s'), val = srch.value.toString().toLowerCase(), re = /^\s+$/;#}
+{#                if(t) {#}
+{#                        if(val == 'Search' || val == 'search'){#}
+{#                                srch.value = '';#}
+{#                        }#}
+{#                } else {#}
+{#                        if(val == 'Search' || val == 'search' || val == '' || re.test(val)) {#}
+{#                                srch.value = 'Search';#}
+{#                        }#}
+{#                }#}
+{#        }#}
+{#        </script>#}
+
+
+</head>
+
+<body>
+	<!-- Wrap Div -->
+	<div id="wrap">
+
+		<!-- Header -->
+		<div id="hdr">
+
+			<!-- Top Menu -->
+			<div id="hdl">
+				<a href="{% url 'base' %}">Главная</a>
+				<a href="{% url 'post_list' %}" class="hl">Блог</a>
+                <a href="#" class="hl">Галерея</a>
+				{% if user.is_authenticated %}
+                    <a href="{% url 'logout' %}">Уйти по-английски, {{ user }}?</a>
+                {% else%}
+                    <a href="{% url 'login' %}" class="hl">Войти</a>
+                {% endif %}
+			</div>
+
+{#			<!-- Search form -->#}
+			<form id="search_form" method="post" action="{% url 'search' %}">
+                 {% csrf_token %}
+				<input class="search_field" type="search" value="?" onfocus="clS(1);" onblur="clS(0);"  name="query" id="s" />
+				<input class="search_button" type="submit"  value="" id="searchsubmit" />
+			</form>
+
+        <!-- Blog Search Well -->
+{#                <div class="well">#}
+{#                    <h4>Blog Search</h4>#}
+{#                    <form method="post" action="{% url "search" %}"  class="input-group">#}
+{#                        {% csrf_token %}#}
+{#                        <input type="search" name="query" class="form-control">#}
+{#                        <span class="input-group-btn">#}
+{#                        <button class="btn btn-default" type="submit">#}
+{#                            <span class="glyphicon glyphicon-search"></span>#}
+{#                        </button>#}
+{#                        </span>#}
+{#                    </form>#}
+{#                    <!-- /.input-group -->#}
+{#                </div>#}
+
+		        <!-- Logo -->
+			<div id="logo">
+				<a href="{% url 'me' %}"></a>
+			</div>
+
+			<!-- Main Menu -->
+			<div id="menu">
+				<a class="mh" href="{% url 'base' %}">Главная</a>
+				<a class="mt" href="{% url 'post_list' %}">Блог</a>
+				<a class="mw" href="#">Галерея</a>
+                {% if user.is_authenticated %}
+                    <a class="mi" href="{% url 'logout' %}">Выйти</a>
+                {% else%}
+                    <a class="mi" href="{% url 'login' %}">Войти</a>
+                {% endif %}
+			</div>
+
+		</div>
+
+		<!-- Container -->
+		<div id="cnt">
+
+			<!-- Left Container -->
+			<div id="lcnt">
+
+				<!-- Post -->
+				<div class="post">
+
+					<!-- Post Details -->
+{#					<div class="post_inf">#}
+{##}
+{#						<span>October 13</span><br />#}
+
+{##}
+{#					</div>#}
+
+					<!-- Post Title - Permalink -->
+					<h1>
+						<a href="{% url 'me' %}">Обо мне...</a>
+					</h1>
+
+					<!-- Post Content -->
+					<img src="{% static 'blog/images/art_pic1.jpg' %}" alt="art_pic1" />
+
+					<p>Основная цель и краткое описание проекта </p>
+                    <p>Основная цель и краткое описание проекта</p>
+                    {% block content %}{% endblock %}
+				</div>
+
+            <!-- Comments -->
+				<div class="comments">
+
+					<!-- Comment -->
+{#					<div class="comment">#}
+{##}
+{#						<div class="comm_hdr">#}
+{#							<p>1. Persia Emily <span> | February 20, 2009 04:33</span></p>#}
+{#						</div>#}
+{##}
+{#						<div class="avat">#}
+{#							<img src="{% static 'blog/images/avatar.jpg' %}" alt="avatar" />#}
+{#							<img src="{% static 'blog/images/avatar_frame.png' %}" alt="avatar_frame" class="avatar_frame" />#}
+{#						</div>#}
+{##}
+{#						<p class="comm_txt">#}
+{#							How excited I am! Coquette Part4 comes out!<br />#}
+{#							I love Dryicons' products very much! <br />#}
+{#							<br />#}
+{#							They're all good!#}
+{#						</p>#}
+{##}
+{#					</div>#}
+                </div>
+			</div>
+{##}
+			<!-- Right Container -->
+			<div id="rcnt">
+				<div class="rss_twitt">
+					<!-- RSS Box -->
+					<a href="http://feeds.feedburner.com/DryIconsFreeGraphics" class="rss"><img height="26" width="88" alt="" style="border: 0pt none ;" src="http://feeds.feedburner.com/~fc/DryIconsFreeGraphics?bg=DEDEDC&amp;fg=444444&amp;anim=0"/></a>
+					<!-- Twitter Counter Box -->
+					<script type="text/javascript" language="JavaScript" src="http://twittercounter.com/embed/dryicons/444444/DEDEDE"></script>
+				</div>
+
+				 <!-- Sponsored Ads -->
+{#				<h2>Sponsored Ads</h2>#}
+{##}
+{#				<div class="l_lnk">#}
+{##}
+{#					<a href="#"><img src="images/sponsor_ads1.jpg" alt="spon_ad_1" /></a>#}
+{#					<a href="#"><img src="images/sponsor_ads2.jpg" alt="spon_ad_2" /></a>#}
+{#					<a href="#"><img src="images/sponsor_ads3.jpg" alt="spon_ad_3" /></a>#}
+{#					<div>#}
+{#						<a target="_blank" href="http://dryicons.com/advertise">Advertise Here</a>#}
+{#					</div>#}
+{##}
+{#				</div>#}
+
+				<!-- Popular Wallpapers -->
+				<h2>Мои друзья</h2>
+
+				<a class="wall" href="#"><img src="{% static 'blog/images/pop_wall1.jpg' %}" alt="Сергей" /></a>
+				<a class="wall" href="#"><img src="{% static 'blog/images/pop_wall2.jpg' %}" alt="Аня" /></a>
+
+				<!-- Traveller -->
+				<h2>Категории блога</h2>
+
+            <div class="pop_posts">
+                {% for c in all_categories %}
+                    <a href="{% url "categories" id=c.pk %}"> {{ c }} пиляять</a>
+                {% endfor %}
+            </div>
+{#            <ul>#}
+{#                {% for s in all_countries %}#}
+{##}
+{#                    <a class="pop_posts" href="{% url "obtain_countries" pk=s.pk %}">{{ s.COUNTRY }}</a>#}
+{#                    <li> {{ count }}</li>#}
+{#                    <li><a class="pop_posts" href="{% url "obtain_countries" pk=s.pk %}"> {{ s.COUNTRY }}</a></li>#}
+{#                {% endfor %}#}
+{#            </ul>#}
+
+{#                <a class="pop_posts" href="#"> {{ strana.COUNTRY }}</a>#}
+{#                {% get_country 'UA' as country %}#}
+{#                <div id="rcnt">#}
+            {#    <h2>Traveller</h2>#}
+
+{#                </div>#}
+			</div>
+
+
+{#				<a class="pop_posts" href="#">country</a>#}
+{#				<a class="pop_posts" href="#">and</a>#}
+{#				<a class="pop_posts" href="#">more of it</a>#}
+
+			<br style="clear: both;"/>
+
+		</div>
+
+	</div>
+
+	<!-- Footer -->
+	<div id="foo">
+
+		<!-- Footer Container -->
+		<div id="foo_d">
+
+			<!-- Footer Menu -->
+			<div id="foo_menu">
+
+				<a href="{% url 'base' %}">НЕ главная (что-то другое)</a><span>.</span>
+				<a href="{% url 'post_list' %}">Блог</a><span>.</span>
+				<a href="#">Галерея</a><span>.</span>
+				<a href="#">Вдохновляющее</a><span>.</span>
+				<a href="#">Заходите в гости</a><span>.</span>
+				<a href="#">Контактная информация</a>
+
+			</div>
+	                <!-- DryIcons credit: Do not remove the following code if you are using this template under the DryIcons Free License Terms of Use
+                     If you'd like to use this theme without the obligatory back-link to http://dryicons.com/ please
+                     consider using it under the DryIcons Commercial License Terms
+                     For details see http://dryicons.com/terms/ -->
+
+			<p>&copy;2016 J0nnyZ website <a target="_blank" href="http://dryicons.com">Понравился сайт? Закажите себе</a></p>
+
+		</div>
+
+	</div>
+
+</body>
+
+</html>
