@@ -51,20 +51,12 @@
     <br/>
 
     <!-- Traveller -->
-{% get_country 'UA' as country %}
-{#    {% block category %}#}
-    <div id="rcnt">
-
-
-{#         <ul>#}
-{#                {% for s in all_countries %}#}
-{#                    <li> {{ count }}</li>#}
-{#                    <li><a class="pop_posts" href="{% url "obtain_countries" pk=s.pk %}"> {{ s.COUNTRY }}</a></li>#}
-{#                {% endfor %}#}
-{#            </ul>#}
-{#    {{ }}#}
-    </div>
-{#    {% endblock %}#}
+{#    <h2>Категории блога</h2>#}
+{#    <div class="pop_posts">#}
+{#        {% for c in cat %}#}
+{#            <a href="{% url 'category' id=c.pk %}"> {{ c.name }} пиляять</a>#}
+{#        {% endfor %}#}
+{#    </div>#}
 
     <!-- Pagination -->
     <div class="pagination">

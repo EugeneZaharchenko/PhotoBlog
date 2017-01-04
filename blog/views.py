@@ -32,21 +32,22 @@ def post_list(request):
 def get_categories():
     all_categories = Category.objects.all()
     count = all_categories.count()
-    return {"all_categories": all_categories, 'count': count}
+    return {"cat": all_categories, 'count': count}
 
 
 def index(request):
     posts = Post.objects.all().order_by("-published_date")
     context = {"posts": posts}
     context.update(get_categories())
-    return render(request, "blog/base.html", context)
+    return render(request, "blog/article.html", context)
 
 
-def categories(request, pk=None):
-    posts = Post.objects.filter(category__id=pk).order_by("-published_date")
+def category(request, pk=None):
+    # c = get_o
+    posts = Post.objects.filter(category__pk=pk).order_by("-published_date")
     context = {"posts": posts}
     context.update(get_categories())
-    return render(request, "blog/base.html", context)
+    return render(request, "blog/article.html", context)
 
 
 def search(request):
@@ -66,6 +67,8 @@ def search(request):
 
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
+    context = {"post": post}
+    context.update(get_categories())
     return render(request, 'blog/post_detail.html', {'post': post})
 
 

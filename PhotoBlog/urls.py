@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from django.contrib.auth import views
-from blog.views import base
+from blog.views import base, category
     # , obtain_countries
     # , search
 # from django.conf import settings
@@ -29,6 +29,7 @@ urlpatterns = [
     url(r'^logout/$', views.logout, {'next_page': "base"}, name='logout'),
     # url(r'^search/$', search, name='search'),
     url(r'^$', base, name='base'),
+
     # url(r'^obtain_countr.+/(?P<pk>\d+)?$', obtain_countries, name="obtain_countries"),
     url(r'', include('blog.urls'))]
 # + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
