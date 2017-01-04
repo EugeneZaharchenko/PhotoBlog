@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="59df00c6-c542-4cc6-8d20-96a4777b033f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PhotoBlog/urls.py" afterPath="$PROJECT_DIR$/PhotoBlog/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/blog/urls.py" afterPath="$PROJECT_DIR$/blog/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/blog/views.py" afterPath="$PROJECT_DIR$/blog/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/blog/article.html" afterPath="$PROJECT_DIR$/templates/blog/article.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/blog/base.html" afterPath="$PROJECT_DIR$/templates/blog/base.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/blog/post_list.html" afterPath="$PROJECT_DIR$/templates/blog/post_list.html" />
     </list>
     <ignored path=".idea/dataSources.local.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -553,6 +546,14 @@
       <option name="presentableId" value="Default" />
       <updated>1481405491317</updated>
     </task>
+    <task id="LOCAL-00001" summary="Article беру за базовый шаблон. Переделал view. Все равно не видно категорий">
+      <created>1483548198747</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1483548198747</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TodoView">
@@ -621,6 +622,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Article беру за базовый шаблон. Переделал view. Все равно не видно категорий" />
+    <option name="LAST_COMMIT_MESSAGE" value="Article беру за базовый шаблон. Переделал view. Все равно не видно категорий" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
