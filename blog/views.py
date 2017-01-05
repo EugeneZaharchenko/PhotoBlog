@@ -18,6 +18,8 @@ def me(request):
 
 def post_list(request):
     all_post = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
+    context = {"posts": all_post}
+    context.update(get_categories())
     paginator = Paginator(all_post, 2)
     page = request.GET.get('page')
     try:
@@ -26,7 +28,7 @@ def post_list(request):
         post = paginator.page(1)
     except EmptyPage:
         post = paginator.page(paginator.num_pages)
-    return render(request, 'blog/post_list.html', {'post': post})
+    return render(request, 'blog/post_list.html', {'post': post}, context)
 
 
 def get_categories():
@@ -35,11 +37,11 @@ def get_categories():
     return {"cat": all_categories, 'count': count}
 
 
-def index(request):
-    posts = Post.objects.all().order_by("-published_date")
-    context = {"posts": posts}
-    context.update(get_categories())
-    return render(request, "blog/article.html", context)
+# def index(request):
+#     posts = Post.objects.all().order_by("-published_date")
+#     context = {"posts": posts}
+#     context.update(get_categories())
+#     return render(request, "blog/article.html", context)
 
 
 def category(request, pk=None):
