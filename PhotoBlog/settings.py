@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'blog',
     'crispy_forms',
     'django_countries',
+    'gallery'
 ]
 
 MIDDLEWARE = [
@@ -129,3 +130,7 @@ LOGIN_REDIRECT_URL = "base"
 LOGIN_URL = "login"
 
 LOGOUT_URL = "logout"
+
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "uploads")
+MEDIA_URL = "/media/"

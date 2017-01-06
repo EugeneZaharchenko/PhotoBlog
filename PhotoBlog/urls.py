@@ -19,8 +19,8 @@ from django.contrib.auth import views
 from blog.views import base, category
     # , obtain_countries
     # , search
-# from django.conf import settings
-# from django.conf.urls.static import static
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 urlpatterns = [
@@ -31,5 +31,4 @@ urlpatterns = [
     url(r'^$', base, name='base'),
 
     # url(r'^obtain_countr.+/(?P<pk>\d+)?$', obtain_countries, name="obtain_countries"),
-    url(r'', include('blog.urls'))]
-# + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+    url(r'', include('blog.urls'))] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
