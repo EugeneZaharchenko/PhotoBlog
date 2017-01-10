@@ -18,10 +18,10 @@
 
         <!-- Post Content -->
         <p class="comm_txt">{{ post.text|linebreaksbr }}</p> <br/>
-        <a href="{% url 'post_edit' pk=post.pk %}">Редактировать</a><br/>
-        <a href="{% url 'post_remove' pk=post.pk %}">Удалить</a><br/>
+        <a class="btn btn-primary" href="{% url 'post_edit' pk=post.pk %}">Редактировать</a><br/>
 {#        <a class="btn btn-default" href="{% url 'post_remove' pk=post.pk %}"><span class="glyphicon glyphicon-remove"></span></a>#}
         <a class="btn btn-default" href="{% url 'add_comment_to_post' pk=post.pk %}">Комментировать</a>
+        <a class="btn btn-danger" href="{% url 'post_remove' pk=post.pk %}">Удалить</a><br/>
     </div>
     <hr>
 <h3> <span class="posn"> Комментарии: </span></h3>

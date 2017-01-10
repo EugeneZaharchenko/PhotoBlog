@@ -34,7 +34,7 @@ def post_list(request):
 def get_categories():
     all_categories = Category.objects.all()
     count = all_categories.count()
-    return {"cat": all_categories, 'count': count}
+    return {'cat': all_categories, 'count': count}
 
 
 # def index(request):
@@ -49,7 +49,7 @@ def category(request, pk=None):
     posts = Post.objects.filter(category__pk=pk).order_by("-published_date")
     context = {"posts": posts}
     context.update(get_categories())
-    return render(request, "blog/article.html", context)
+    return render(request, "blog/post_list.html", context)
 
 
 def search(request):
@@ -58,7 +58,7 @@ def search(request):
 
     if request.method == 'POST':
         query = request.POST['query']
-        posts = Post.objects.filter(title=query).order_by("-published_date")
+        posts = Post.objects.filter(title__icontains=query).order_by("-published_date")
     else:
         posts = []
 

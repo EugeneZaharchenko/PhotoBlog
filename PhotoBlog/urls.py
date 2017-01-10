@@ -29,6 +29,5 @@ urlpatterns = [
     url(r'^logout/$', views.logout, {'next_page': "base"}, name='logout'),
     # url(r'^search/$', search, name='search'),
     url(r'^$', base, name='base'),
-
-    # url(r'^obtain_countr.+/(?P<pk>\d+)?$', obtain_countries, name="obtain_countries"),
-    url(r'', include('blog.urls'))] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+    url(r'^gallery/', include("gallery.urls")),
+    url(r'', include('blog.urls'))] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

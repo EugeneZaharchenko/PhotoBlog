@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'blog',
     'crispy_forms',
     'django_countries',
-    'gallery'
+    'gallery',
+    'easy_thumbnails'
 ]
 
 MIDDLEWARE = [
