@@ -2,17 +2,17 @@
 {% load staticfiles %}
 {% load countries %}
 {% block content %}
-    {% for p in post %}
+    {% for p in posts %}
 {#        <!-- Comments -->#}
 {#        <h4>{{ p.category }}</h4>#}
 				<div class="comments">
 
 {#					<!-- Comment -->#}
 					<div class="comment">
-						<div class="comm_hdr">
+
                             <a href="{% url 'post_detail' pk=p.pk %}"><h3>{{ p.title }}</h3></a>
-{#                            <a href="">{{ p.country }}</a>#}
-							<p>{{ p.text|truncatewords:3 }} <span> | {{ p.published_date }}</span></p>
+                        <div class="comm_hdr">
+							<p align="left">{{ p.text|truncatewords:3 }} <span> | {{ p.published_date }}</span></p>
 						</div>
 {#						<div class="avat">#}
 {#							<img src="{% static 'blog/images/avatar.jpg' %}" alt="avatar" />#}
@@ -23,7 +23,7 @@
 				</div>
         <div class="post">
             <div class="post_inf">
-                <span class="posc"> </span><br/>
+{#                <span class="posc"> </span><br/>#}
                 <span class="pst">Это было в: {{ p.country }}</span><br/>
 {#                <span class="pst">Дата публикации: </span><br/>#}
                 <span class="pst">Комментариев: {{ p.comments.count }}</span><br/>

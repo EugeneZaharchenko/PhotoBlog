@@ -131,10 +131,7 @@
 {#					<h1>#}
 {#						<a href="{% url 'me' %}">Обо мне...</a>#}
 {#					</h1>#}
-
-                    <p>Основная цель и краткое описание проекта</p>
                     {% block content %}{% endblock %}
-                <br />
 				</div>
 
 {#				<div class="pagination">#}
@@ -170,16 +167,11 @@
 {##}
 {#				</div>#}
 				
-				<!-- Popular Wallpapers -->
-				<h3>Мои друзья</h3>
+				<!-- Blog Categories -->
 
-				<a class="wall" href="#"><img src="{% static 'blog/images/pop_wall1.jpg' %}" alt="Сергей" /></a>
-				<a class="wall" href="#"><img src="{% static 'blog/images/pop_wall2.jpg' %}" alt="Аня" /></a>
-
-				<h3>Категории блога</h3>
-                <div class="pop_posts">
+				<h2>Категории блога</h2>
                     {% for c in cat %}
-                        <a href="{% url "category" id=c.pk %}"> {{ c.name }} пиляять</a>
+                        <a class="pop_posts" href="{% url "category" id=c.pk %}"> {{ c.name }} </a>
                     {% endfor %}
                 </div>
 {#				<a class="pop_posts" href="#">Another</a>#}
@@ -198,7 +190,6 @@
 
 		</div>
 
-	</div>
 
 	<!-- Footer -->
 	<div id="foo">

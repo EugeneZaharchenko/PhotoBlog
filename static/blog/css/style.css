@@ -6119,7 +6119,7 @@ body {
 	background-position: 0 0;
 	width:615px;
 	height:37px;
-	padding:15px 0 0 0;
+	padding:15px -1px 0 0;
 }
 .comm_hdr p {
 	margin:0 0 0 23px;

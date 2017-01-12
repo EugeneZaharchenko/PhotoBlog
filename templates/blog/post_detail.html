@@ -9,18 +9,15 @@
                 {{ post.published_date }}
             </div>
         {% endif %}
-{#        <div id="glyph">#}
-{#            <a class="btn btn-default" #}
 
-{#        </div>#}
-        <h2> <span class="posn"> {{ post.title }} </span></h2>
+        <h3> <span class="pst"> {{ post.title }} </span></h3>
 {#        <h3><span class="pst">Страна: {{ post.COUNTRY.name }}</span></h3><br/>#}
 
         <!-- Post Content -->
         <p class="comm_txt">{{ post.text|linebreaksbr }}</p> <br/>
         <a class="btn btn-primary" href="{% url 'post_edit' pk=post.pk %}">Редактировать</a><br/>
 {#        <a class="btn btn-default" href="{% url 'post_remove' pk=post.pk %}"><span class="glyphicon glyphicon-remove"></span></a>#}
-        <a class="btn btn-default" href="{% url 'add_comment_to_post' pk=post.pk %}">Комментировать</a>
+        <a class="btn btn-default" href="{% url 'add_comment_to_post' pk=post.pk %}">Комментировать</a><br/>
         <a class="btn btn-danger" href="{% url 'post_remove' pk=post.pk %}">Удалить</a><br/>
     </div>
     <hr>
