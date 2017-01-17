@@ -41,7 +41,7 @@ class Post(models.Model):
             blank=True, null=True)
     country = models.ForeignKey(Strana, default=None)
     category = models.ForeignKey(Category, default=None, verbose_name=_("Category"))
-    # img = models.ImageField(upload_to="")
+    # img = models.ImageField(upload_to="posts", verbose_name=_("Post Image"))
 
     def publish(self):
         self.published_date = timezone.now()
@@ -63,6 +63,7 @@ class Comment(models.Model):
     author = models.CharField(max_length=200)
     gender = models.CharField(max_length=9, choices=GENDER_CHOICES, default='it')
     text = models.TextField()
+    mail = models.EmailField(null=False, default=None)
     created_date = models.DateTimeField(default=timezone.now)
     approved_comment = models.BooleanField(default=False)
 

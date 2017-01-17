@@ -73,25 +73,8 @@
 			<form id="search_form" method="post" action="{% url 'search' %}">
                  {% csrf_token %}
 				<input class="search_field" type="search" value="?" onfocus="clS(1);" onblur="clS(0);"  name="query" id="s" />
-				<input class="search_button" type="submit"  value="" id="searchsubmit" />
+				<input class="btn btn-default" type="submit"  value="" id="searchsubmit" />
 			</form>
-
-        <!-- Blog Search Well -->
-{#                <div class="well">#}
-{#                    <h4>Blog Search</h4>#}
-{#                    <form method="post" action="{% url "search" %}"  class="input-group">#}
-{#                        {% csrf_token %}#}
-{#                        <input type="search" name="query" class="form-control">#}
-{#                        <span class="input-group-btn">#}
-{#                        <button class="btn btn-default" type="submit">#}
-{#                            <span class="glyphicon glyphicon-search"></span>#}
-{#                        </button>#}
-{#                        </span>#}
-{#                    </form>#}
-{#                    <!-- /.input-group -->#}
-{#                </div>#}
-
-		        <!-- Logo -->
 
 			<div id="logo">
 				<a href="{% url 'person' %}"></a>
@@ -135,7 +118,11 @@
 					<!-- Post Content -->
 					<img src="{% static 'blog/images/art_pic1.jpg' %}" alt="art_pic1" />
 
-					<p>Основная цель и краткое описание проекта </p>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tristique dui a blandit egestas. Nam sit amet ex diam. Integer sed volutpat felis. Nam bibendum fermentum tincidunt. Quisque finibus commodo pharetra. Mauris non diam at libero vulputate accumsan. Proin venenatis lectus eu ante blandit vestibulum. Aliquam sit amet blandit lectus. Praesent vestibulum in tellus eget convallis. Fusce eu hendrerit sem, sit amet vulputate mi. Sed sed ligula lacus. Etiam efficitur, metus sollicitudin accumsan placerat, diam nisl lobortis orci, eu hendrerit purus diam quis arcu. Ut dui erat, lacinia at tempus imperdiet, eleifend gravida lectus.
+
+Duis sit amet dolor at ex scelerisque ultricies id non turpis. Duis hendrerit felis eu risus faucibus commodo. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nullam sed nibh lacinia, mollis nisl vitae, placerat magna. Vestibulum nec malesuada enim, quis pharetra nunc. Integer eu mollis turpis, vitae tristique nisl. Mauris ut dui facilisis, fermentum nibh a, finibus dolor.
+
+Duis non mollis sapien. Nunc ut eros sem. In a turpis sed nibh volutpat laoreet. Nam euismod orci quis lectus ultricies finibus. Pellentesque iaculis enim augue, porta placerat lacus egestas quis. Aliquam ut ante tellus. Aliquam egestas urna quam, sit amet blandit lorem tristique sed. Nam sit amet odio finibus, vehicula massa vel, tempor purus. Pellentesque aliquet, dui nec egestas facilisis, elit metus finibus nunc, eu rutrum arcu dolor id libero. Morbi commodo turpis eu ex congue accumsan. Donec nec est arcu. Maecenas elementum nunc a ultrices pulvinar. Sed id mauris risus. Proin pulvinar justo in ante sollicitudin pharetra.</p>
                     <p>Основная цель и краткое описание проекта</p>
                     {% block content %}{% endblock %}
 				</div>
@@ -195,28 +182,8 @@
 				<a class="wall" href="#"><img src="{% static 'blog/images/pop_wall1.jpg' %}" alt="Сергей" /></a>
 				<a class="wall" href="#"><img src="{% static 'blog/images/pop_wall2.jpg' %}" alt="Аня" /></a>
 
-				<!-- Traveller -->
-
-{#            <ul>#}
-{#                {% for s in all_countries %}#}
-{##}
-{#                    <a class="pop_posts" href="{% url "obtain_countries" pk=s.pk %}">{{ s.COUNTRY }}</a>#}
-{#                    <li> {{ count }}</li>#}
-{#                    <li><a class="pop_posts" href="{% url "obtain_countries" pk=s.pk %}"> {{ s.COUNTRY }}</a></li>#}
-{#                {% endfor %}#}
-{#            </ul>#}
-
-{#                <a class="pop_posts" href="#"> {{ strana.COUNTRY }}</a>#}
-{#                {% get_country 'UA' as country %}#}
-{#                <div id="rcnt">#}
-            {#    <h2>Traveller</h2>#}
-
-{#                </div>#}
 			</div>
 
-
-{#				<a class="pop_posts" href="#">country</a>#}
-{#				<a class="pop_posts" href="#">and</a>#}
 {#				<a class="pop_posts" href="#">more of it</a>#}
 
 			<br style="clear: both;"/>
@@ -242,10 +209,6 @@
 				<a href="#">Контактная информация</a>
 
 			</div>
-	                <!-- DryIcons credit: Do not remove the following code if you are using this template under the DryIcons Free License Terms of Use
-                     If you'd like to use this theme without the obligatory back-link to http://dryicons.com/ please
-                     consider using it under the DryIcons Commercial License Terms
-                     For details see http://dryicons.com/terms/ -->
 
 			<p>&copy;2016 J0nnyZ website <a target="_blank" href="http://dryicons.com">Понравился сайт? Закажите себе</a></p>
 

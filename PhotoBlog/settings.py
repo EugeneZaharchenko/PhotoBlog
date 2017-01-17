@@ -109,8 +109,6 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 
-LANGUAGE_CODE = 'uk-ua'
-
 TIME_ZONE = 'UTC+2'
 
 USE_I18N = True
@@ -135,3 +133,23 @@ LOGOUT_URL = "logout"
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "uploads")
 MEDIA_URL = "/media/"
+
+from django.utils.translation import ugettext_lazy as _
+
+LANGUAGE_CODE = 'ru'
+LANGUAGES = (
+    ('ru', _('Russia')),
+    ('en', _('English'))
+)
+DEFAULT_LANGUAGE = 1
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale'),
+)
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'eugenezaharchenko@gmail.com'
+EMAIL_HOST_PASSWORD = 'J140180z'

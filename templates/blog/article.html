@@ -29,25 +29,6 @@
         </script>
         <![endif]-->
 
-{#        <script type="text/javascript">#}
-{#        /*#}
-{#         * Simple JS function for setting the search value#}
-{#         */#}
-{#        function clS(t){#}
-{#                var srch = document.getElementById('s'), val = srch.value.toString().toLowerCase(), re = /^\s+$/;#}
-{#                if(t) {#}
-{#                        if(val == 'Search' || val == 'search'){#}
-{#                                srch.value = '';#}
-{#                        }#}
-{#                } else {#}
-{#                        if(val == 'Search' || val == 'search' || val == '' || re.test(val)) {#}
-{#                                srch.value = 'Search';#}
-{#                        }#}
-{#                }#}
-{#        }#}
-{#        </script>#}
-
-
 </head>
 
 <body>
@@ -70,26 +51,11 @@
 			</div>
 
 			<!-- Search form -->
-{#			<form id="search_form" method="post" action="{% url 'search' %}">#}
-{#                 {% csrf_token %}#}
-{#				<input class="search_field" type="search" value="?" onfocus="clS(1);" onblur="clS(0);"  name="query" id="s" />#}
-{#				<input class="search_button" type="submit"  value="" id="searchsubmit" />#}
-{#			</form>#}
-
-<!-- Blog Search Well -->
-{#                <div class="well">#}
-{#                    <h4>Blog Search</h4>#}
-{#                    <form method="post" action="{% url "search" %}"  class="input-group">#}
-{#                        {% csrf_token %}#}
-{#                        <input type="search" name="query" class="form-control">#}
-{#                        <span class="input-group-btn">#}
-{#                        <button class="btn btn-default" type="submit">#}
-{#                            <span class="glyphicon glyphicon-search"></span>#}
-{#                        </button>#}
-{#                        </span>#}
-{#                    </form>#}
-{#                    <!-- /.input-group -->#}
-{#                </div>#}
+    		<form id="search_form" method="post" action="{% url 'search' %}">
+                 {% csrf_token %}
+				<input type="search" value="?" onfocus="clS(1);" onblur="clS(0);"  name="query" id="s" />
+				<input class="btn btn-default" type="submit"  value="" id="searchsubmit" />
+			</form>
 
 		        <!-- Logo -->
 			<div id="logo">
@@ -134,14 +100,6 @@
                     {% block content %}{% endblock %}
 				</div>
 
-{#				<div class="pagination">#}
-{##}
-{#					<span class="prev">&laquo;Previous</span>#}
-{#					1</span>#}
-{#					<a class="next" href="#">Next&raquo;</a>#}
-{##}
-{#				</div>#}
-
 			</div>
 
 			<!-- Right Container -->
@@ -174,14 +132,13 @@
                         <a class="pop_posts" href="{% url "category" id=c.pk %}"> {{ c.name }} </a>
                     {% endfor %}
                 </div>
-{#				<a class="pop_posts" href="#">Another</a>#}
-{#				<a class="pop_posts" href="#">and</a>#}
+
+<br/>
+            <a class="add_post" style="text-align: center" href="{% url 'post_new' %}"> <h3>Добавить запись</h3> <br/> в блог</a>
 {#				<a class="pop_posts" href="#">more of it</a>#}
 {#                {% for p in post %}#}
 {#				<a class="pop_posts" href="#">{{ p.country }}</a>#}
 {##}
-
-{#				<a class="pop_posts" href="#">and</a>#}
 {#				<a class="pop_posts" href="#">more of it</a>#}
 {#                {% endfor %}#}
 			</div>
@@ -208,10 +165,6 @@
 				<a href="#">Контактная информация</a>
 
 			</div>
-	                <!-- DryIcons credit: Do not remove the following code if you are using this template under the DryIcons Free License Terms of Use
-                     If you'd like to use this theme without the obligatory back-link to http://dryicons.com/ please
-                     consider using it under the DryIcons Commercial License Terms
-                     For details see http://dryicons.com/terms/ -->
 
 			<p>&copy;2016 J0nnyZ website <a target="_blank" href="http://dryicons.com">Понравился сайт? Закажите себе</a></p>
 

@@ -6,7 +6,25 @@ from . forms import PostForm, CommentForm, PostFormEdit, CountryForm
 #Подключаем пагинатор
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail
 
+
+# from PIL import Image, ImageDraw, ImageFont
+#
+#
+# _default_font = ImageFont.truetype('/usr/share/fonts/dejavu/DejaVuSans-Bold.ttf', 24)
+#
+#
+# def add_text_overlay(image, text, font=_default_font):
+#     rgba_image = image.convert('RGBA')
+#     text_overlay = Image.new('RGBA', rgba_image.size, (255, 255, 255, 0))
+#     image_draw = ImageDraw.Draw(text_overlay)
+#     text_size_x, text_size_y = image_draw.textsize(text, font=font)
+#     text_xy = ((rgba_image.size[0] / 2) - (text_size_x / 2), (rgba_image.size[1] / 2) - (text_size_y / 2))
+#     image_draw.text(text_xy, text, font=font, fill=(255, 255, 255, 128))
+#     image_with_text_overlay = Image.alpha_composite(rgba_image, text_overlay)
+#
+#     return image_with_text_overlay
 
 def base(request):
     return render(request, 'blog/base.html')
@@ -18,7 +36,7 @@ def me(request):
 
 def post_list(request):
     all_post = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
-    paginator = Paginator(all_post, 2)
+    paginator = Paginator(all_post, 3)
     page = request.GET.get('page')
     try:
         post = paginator.page(page)
@@ -37,15 +55,7 @@ def get_categories():
     return {'cat': all_categories, 'count': count}
 
 
-# def index(request):
-#     posts = Post.objects.all().order_by("-published_date")
-#     context = {"posts": posts}
-#     context.update(get_categories())
-#     return render(request, "blog/article.html", context)
-
-
 def category(request, id=None):
-    # c = get_o
     posts = Post.objects.filter(category__id=id).order_by("-published_date")
     context = {"posts": posts}
     context.update(get_categories())
@@ -112,10 +122,14 @@ def add_comment_to_post(request, pk):
     post = get_object_or_404(Post, pk=pk)
     if request.method == "POST":
         form = CommentForm(request.POST)
+        comm = request.POST.get('text')
+        auth = request.POST.get('author')
+        mail = request.POST.get('mail')
         if form.is_valid():
             comment = form.save(commit=False)
             comment.post = post
             comment.save()
+            send_mail('Был добавлен комментарий автором: ' + str(auth), 'добавлен комментарий: ' + str(comm), mail, ['eugenezaharchenko@gmail.com'])
             return redirect('post_detail', pk=post.pk)
     else:
         form = CommentForm()
