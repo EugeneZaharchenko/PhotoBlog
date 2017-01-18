@@ -129,7 +129,7 @@ def add_comment_to_post(request, pk):
             comment = form.save(commit=False)
             comment.post = post
             comment.save()
-            send_mail('Был добавлен комментарий автором: ' + str(auth), 'добавлен комментарий: ' + str(comm), mail, ['eugenezaharchenko@gmail.com'])
+            send_mail('Комментарий', 'Автором: ' + str(auth) + ' был добавлен комментарий: ' + str(comm) + '. Электронный адрес автора: ' + str(mail), mail, ['romanuks@ukr.net'])
             return redirect('post_detail', pk=post.pk)
     else:
         form = CommentForm()
