@@ -28,25 +28,6 @@
         </script>
         <![endif]-->
 
-        <script type="text/javascript">
-        /*
-         * Simple JS function for setting the search value
-         */
-        function clS(t){
-                var srch = document.getElementById('s'), val = srch.value.toString().toLowerCase(), re = /^\s+$/;
-                if(t) {
-                        if(val == 'Search' || val == 'search'){
-                                srch.value = '';
-                        }
-                } else {
-                        if(val == 'Search' || val == 'search' || val == '' || re.test(val)) {
-                                srch.value = 'Search';
-                        }
-                }
-        }
-        </script>
-
-
 </head>
 
 <body>
@@ -58,7 +39,7 @@
 
 			<!-- Top Menu -->
 			<div id="hdl">
-				<a href="{% url 'base' %}">НЕ главная (что-то другое)</a>
+				<a href="{% url 'base' %}">Главная</a>
                 <a href="{% url 'post_list' %}" class="hl">Блог</a>
                 <a href="#" class="hl">Галерея</a>
 				<a href="#" class="hl">Войти</a>
@@ -71,7 +52,7 @@
 
 			<!-- Main Menu -->
 			<div id="menu">
-				<a class="mh" href="{% url 'base' %}">НЕ главная</a>
+				<a class="mh" href="{% url 'base' %}">Главная</a>
                 <a class="mt" href="{% url 'post_list' %}">Блог</a>
 				<a class="mw" href="#">Галерея</a>
 				<a class="mi" href="#">Вдохновляющее</a>
@@ -190,7 +171,7 @@ Duis non mollis sapien. Nunc ut eros sem. In a turpis sed nibh volutpat laoreet.
 			<!-- Footer Menu -->
 			<div id="foo_menu">
 
-				<a href="{% url 'base' %}">НЕ главная (что-то другое)</a><span>.</span>
+				<a href="{% url 'base' %}">Главная</a><span>.</span>
                 <a href="{% url 'post_list' %}">Блог</a><span>.</span>
 				<a href="#">Галерея</a><span>.</span>
 				<a href="#">Вдохновляющее</a><span>.</span>

@@ -118,11 +118,8 @@
 					<!-- Post Content -->
 					<img src="{% static 'blog/images/art_pic1.jpg' %}" alt="art_pic1" />
 
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tristique dui a blandit egestas. Nam sit amet ex diam. Integer sed volutpat felis. Nam bibendum fermentum tincidunt. Quisque finibus commodo pharetra. Mauris non diam at libero vulputate accumsan. Proin venenatis lectus eu ante blandit vestibulum. Aliquam sit amet blandit lectus. Praesent vestibulum in tellus eget convallis. Fusce eu hendrerit sem, sit amet vulputate mi. Sed sed ligula lacus. Etiam efficitur, metus sollicitudin accumsan placerat, diam nisl lobortis orci, eu hendrerit purus diam quis arcu. Ut dui erat, lacinia at tempus imperdiet, eleifend gravida lectus.
+					{% lorem 3 p %}
 
-Duis sit amet dolor at ex scelerisque ultricies id non turpis. Duis hendrerit felis eu risus faucibus commodo. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nullam sed nibh lacinia, mollis nisl vitae, placerat magna. Vestibulum nec malesuada enim, quis pharetra nunc. Integer eu mollis turpis, vitae tristique nisl. Mauris ut dui facilisis, fermentum nibh a, finibus dolor.
-
-Duis non mollis sapien. Nunc ut eros sem. In a turpis sed nibh volutpat laoreet. Nam euismod orci quis lectus ultricies finibus. Pellentesque iaculis enim augue, porta placerat lacus egestas quis. Aliquam ut ante tellus. Aliquam egestas urna quam, sit amet blandit lorem tristique sed. Nam sit amet odio finibus, vehicula massa vel, tempor purus. Pellentesque aliquet, dui nec egestas facilisis, elit metus finibus nunc, eu rutrum arcu dolor id libero. Morbi commodo turpis eu ex congue accumsan. Donec nec est arcu. Maecenas elementum nunc a ultrices pulvinar. Sed id mauris risus. Proin pulvinar justo in ante sollicitudin pharetra.</p>
                     <p>Основная цель и краткое описание проекта</p>
                     {% block content %}{% endblock %}
 				</div>
@@ -201,7 +198,7 @@ Duis non mollis sapien. Nunc ut eros sem. In a turpis sed nibh volutpat laoreet.
 			<!-- Footer Menu -->
 			<div id="foo_menu">
 
-				<a href="{% url 'base' %}">НЕ главная (что-то другое)</a><span>.</span>
+				<a href="{% url 'base' %}">Главная</a><span>.</span>
 				<a href="{% url 'post_list' %}">Блог</a><span>.</span>
 				<a href="{% url 'gallery' %}">Галерея</a><span>.</span>
 				<a href="#">Вдохновляющее</a><span>.</span>

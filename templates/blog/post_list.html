@@ -26,9 +26,9 @@
                      </div>
 
                      <div class="post">
-                             <a><span class="posc">любоваться фотографией </span></a>
+                             <a href= {% url "gallery/views/certain_photo" pk=p.pk %}> <span class="posc"> любоваться фотографией  </span></a>
                      </div>
-
+{#with photos.image.url='uploads/photos' only#}
 {#						<div class="avat">#}
 {#							<img src="{% static 'blog/images/avatar.jpg' %}" alt="avatar" />#}
 {#							<img src="{% static 'blog/images/avatar_frame.png' %}" alt="avatar_frame" class="avatar_frame" />#}
@@ -38,19 +38,6 @@
 				</div>
 
     {% endfor %}
-
-{#    <div id="rcnt">#}
-{#    {% for S in posts %}#}
-{##}
-{#            <a>{{ S.COUNTRY.name }}</a>#}
-{#        <a class="pop_posts" href="{% url "p" id=post.pk %}>{{ context }}</a>#}
-{#        <a href="{% url "post" id=post.pk %}">{{ post.title }}</a>#}
-{##}
-{#    {% endfor %}#}
-{#    </div>#}
-
-
-
 
     <!-- Pagination -->
     <div class="pagination">

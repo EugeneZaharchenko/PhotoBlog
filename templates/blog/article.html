@@ -98,6 +98,7 @@
 {#						<a href="{% url 'me' %}">Обо мне...</a>#}
 {#					</h1>#}
                     {% block content %}{% endblock %}
+
 				</div>
 
 			</div>
@@ -134,13 +135,8 @@
                 </div>
 
 <br/>
-            <a class="add_post" style="text-align: center" href="{% url 'post_new' %}"> <h3>Добавить запись</h3> <br/> в блог</a>
-{#				<a class="pop_posts" href="#">more of it</a>#}
-{#                {% for p in post %}#}
-{#				<a class="pop_posts" href="#">{{ p.country }}</a>#}
-{##}
-{#				<a class="pop_posts" href="#">more of it</a>#}
-{#                {% endfor %}#}
+{#            <a class="add_post" style="text-align: center" href="{% url 'post_new' %}"> <h3>Добавить запись</h3> <br/> в блог</a>#}
+                <a class="btn btn-success btn-lg" href="{% url 'post_new' %}">Добавить запись</a>
 			</div>
 
 			<br style="clear: both;"/>
@@ -157,7 +153,7 @@
 			<!-- Footer Menu -->
 			<div id="foo_menu">
 
-				<a href="{% url 'base' %}">НЕ главная (что-то другое)</a><span>.</span>
+				<a href="{% url 'base' %}">Главная</a><span>.</span>
 				<a href="{% url 'post_list' %}">Блог</a><span>.</span>
 				<a href="{% url 'gallery' %}">Галерея</a><span>.</span>
 				<a href="#">Вдохновляющее</a><span>.</span>
