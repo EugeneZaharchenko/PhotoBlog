@@ -105,12 +105,6 @@
 
 			<!-- Right Container -->
 			<div id="rcnt">
-				<div class="rss_twitt">
-					<!-- RSS Box -->
-					<a href="http://feeds.feedburner.com/DryIconsFreeGraphics" class="rss"><img height="26" width="88" alt="" style="border: 0pt none ;" src="http://feeds.feedburner.com/~fc/DryIconsFreeGraphics?bg=DEDEDC&amp;fg=444444&amp;anim=0"/></a>
-					<!-- Twitter Counter Box -->
-					<script type="text/javascript" language="JavaScript" src="http://twittercounter.com/embed/dryicons/444444/DEDEDE"></script>
-				</div>
 
 				 <!-- Sponsored Ads -->
 {#				<h2>Sponsored Ads</h2>#}
@@ -128,11 +122,22 @@
 				
 				<!-- Blog Categories -->
 
-				<h2>Категории блога</h2>
+				<h3 align="center">Категории блога</h3>
                     {% for c in cat %}
                         <a class="pop_posts" href="{% url "category" id=c.pk %}"> {{ c.name }} </a>
                     {% endfor %}
+
+                <h3 align="center">Ключевые слова:</h3>
+                {% for tag in post.tag.all %} {#делаем проход по нашим тегам#}
+                    <a href="tag/{{ tag }}">{{ tag }}</a> {#выводим их на экран#}
+{#                            ставим между тегами запятые#}
+                    {% if not forloop.last %}, {% endif %}
+                {% endfor %}
+
                 </div>
+
+{#                <div class="tags">ключевые слова:#}
+
 
 <br/>
 {#            <a class="add_post" style="text-align: center" href="{% url 'post_new' %}"> <h3>Добавить запись</h3> <br/> в блог</a>#}

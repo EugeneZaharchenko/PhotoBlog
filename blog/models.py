@@ -1,9 +1,6 @@
 
 from django.db import models
 from django.utils import timezone
-from django.utils.translation import ugettext_lazy as _
-from django_countries.fields import CountryField
-from django_countries import countries
 
 
 class Category(models.Model):
@@ -17,17 +14,15 @@ class Category(models.Model):
         verbose_name_plural = "Категории"
 
 
-class Strana(models.Model):
-    country_choices = countries
-
-    COUNTRY = CountryField(choices=country_choices, verbose_name="Страна")
+class Tag(models.Model):
+    name = models.CharField(max_length=50, verbose_name="Ключевые слова")
 
     def __str__(self):
-        return str(self.COUNTRY)
+        return self.name
 
     class Meta:
-        verbose_name = "Страна"
-        verbose_name_plural = "Страны"
+        verbose_name = "Тег"
+        verbose_name_plural = "Теги"
 
 
 class Post(models.Model):
@@ -39,9 +34,9 @@ class Post(models.Model):
             default=timezone.now)
     published_date = models.DateTimeField(
             blank=True, null=True)
-    country = models.ForeignKey(Strana, default=None)
-    category = models.ForeignKey(Category, default=None, verbose_name=_("Category"))
-    # img = models.ImageField(upload_to="posts", verbose_name=_("Post Image"))
+    category = models.ForeignKey(Category, default=None, verbose_name="Категория")
+    img = models.ImageField(null=True, upload_to="posts", verbose_name="Картинка")
+    tag = models.ManyToManyField(Tag)
 
     def publish(self):
         self.published_date = timezone.now()
@@ -51,8 +46,8 @@ class Post(models.Model):
         return self.title
 
     class Meta:
-        verbose_name = _("Post")
-        verbose_name_plural = _("Posts")
+        verbose_name = "Пост"
+        verbose_name_plural = "Посты"
 
 
 class Comment(models.Model):
@@ -73,3 +68,7 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.text
+
+    class Meta:
+        verbose_name = "Комментарий"
+        verbose_name_plural = "Комментарии"

@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
 from django.shortcuts import redirect
 from . models import Post, Category
-from . forms import PostForm, CommentForm, PostFormEdit, CountryForm
+from . forms import PostForm, CommentForm, PostFormEdit
 #Подключаем пагинатор
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.contrib.auth.decorators import login_required
@@ -88,12 +88,10 @@ def post_detail(request, pk):
 def post_new(request):
     if request.method == "POST":
         form = PostForm(request.POST)
-        country_form = CountryForm()
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
             post.published_date = timezone.now()
-            country_form.COUNTRY = CountryForm('UA')
             post.save()
             return redirect('post_detail', pk=post.pk)
     else:

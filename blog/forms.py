@@ -1,15 +1,14 @@
 from django import forms
-from .models import Post, Comment, Strana, Category
-from django_countries.widgets import CountrySelectWidget
+from .models import Post, Comment, Category, Tag
 
 
 class PostForm(forms.ModelForm):
 
     class Meta:
         model = Post
-        fields = ('title', 'text', 'country', 'category')
+        fields = ('title', 'text', 'category', 'tag')
         exclude = ('published_date', 'author')
-        widgets = {'country': CountrySelectWidget()}
+        # widgets = {'country': CountrySelectWidget()}
 
 
 class PostFormEdit(forms.ModelForm):
@@ -17,8 +16,8 @@ class PostFormEdit(forms.ModelForm):
     class Meta:
         model = Post
         fields = ('title', 'text', 'category')
-        exclude = ('published_date', 'author', 'country')
-        widgets = {'country': CountrySelectWidget()}
+        exclude = ('published_date', 'author',)
+
 
 
 class CategoryForm(forms.ModelForm):
@@ -28,11 +27,11 @@ class CategoryForm(forms.ModelForm):
         fields = ('name',)
 
 
-class CountryForm(forms.ModelForm):
+class TagForm(forms.ModelForm):
 
     class Meta:
-        model = Strana
-        fields = ('COUNTRY',)
+        model = Tag
+        fields = ('name',)
 
 
 class CommentForm(forms.ModelForm):
