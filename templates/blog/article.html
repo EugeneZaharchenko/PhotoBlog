@@ -127,11 +127,13 @@
                         <a class="pop_posts" href="{% url "category" id=c.pk %}"> {{ c.name }} </a>
                     {% endfor %}
 
-                <h3 align="center">Ключевые слова:</h3>
-                {% for tag in post.tag.all %} {#делаем проход по нашим тегам#}
-                    <a href="tag/{{ tag }}">{{ tag }}</a> {#выводим их на экран#}
-{#                            ставим между тегами запятые#}
-                    {% if not forloop.last %}, {% endif %}
+                <h3 align="center">Ключевые слова</h3>
+                {% for post in posts %}
+                    {% for tag in post.tag.all %} {#делаем проход по нашим тегам#}
+                        <a href="tag/{{ tag }}">{{ tag }}</a> {#выводим их на экран#}
+    {#                            ставим между тегами запятые#}
+                        {% if not forloop.last %}, {% endif %}
+                    {% endfor %}
                 {% endfor %}
 
                 </div>

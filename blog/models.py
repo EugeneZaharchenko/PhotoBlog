@@ -28,15 +28,15 @@ class Tag(models.Model):
 class Post(models.Model):
 
     author = models.ForeignKey('auth.User')
-    title = models.CharField(max_length=100, unique=True)
-    text = models.TextField()
+    title = models.CharField(max_length=100, unique=True, verbose_name="Заголовок")
+    text = models.TextField(verbose_name="Текст")
     created_date = models.DateTimeField(
             default=timezone.now)
     published_date = models.DateTimeField(
             blank=True, null=True)
     category = models.ForeignKey(Category, default=None, verbose_name="Категория")
-    img = models.ImageField(null=True, upload_to="posts", verbose_name="Картинка")
-    tag = models.ManyToManyField(Tag)
+    img = models.ImageField(blank=True, upload_to="posts", verbose_name="Картинка", default=None)
+    tag = models.ManyToManyField(Tag, verbose_name="Тег")
 
     def publish(self):
         self.published_date = timezone.now()

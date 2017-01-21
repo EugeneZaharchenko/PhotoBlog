@@ -6,7 +6,7 @@ class PostForm(forms.ModelForm):
 
     class Meta:
         model = Post
-        fields = ('title', 'text', 'category', 'tag')
+        fields = ('title', 'text', 'category', 'tag', 'img')
         exclude = ('published_date', 'author')
         # widgets = {'country': CountrySelectWidget()}
 
@@ -15,7 +15,7 @@ class PostFormEdit(forms.ModelForm):
 
     class Meta:
         model = Post
-        fields = ('title', 'text', 'category')
+        fields = ('title', 'text', 'category', 'tag')
         exclude = ('published_date', 'author',)
 
 

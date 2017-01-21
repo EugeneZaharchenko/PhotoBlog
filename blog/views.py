@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
 from django.shortcuts import redirect
-from . models import Post, Category
+from . models import Post, Category, Tag
 from . forms import PostForm, CommentForm, PostFormEdit
 #Подключаем пагинатор
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
@@ -60,6 +60,12 @@ def category(request, id=None):
     context = {"posts": posts}
     context.update(get_categories())
     return render(request, "blog/post_list.html", context)
+
+
+def tag (request, id):
+    tag = Tag.objects.select_related().get(id=id)
+    posts = tag.post_set.all()
+    return render(request, "blog/post_list.html", {'posts': posts, 'tag': tag})
 
 
 def search(request):
