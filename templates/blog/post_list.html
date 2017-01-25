@@ -1,6 +1,5 @@
 {% extends 'blog/article.html' %}
 {% load staticfiles %}
-{% load countries %}
 
 {% block content %}
     {% for p in posts %}
@@ -34,7 +33,14 @@
 {#							<img src="{% static 'blog/images/avatar_frame.png' %}" alt="avatar_frame" class="avatar_frame" />#}
 {#						</div>#}
 					</div>
-
+{#<h3 align="center">Ключевые слова</h3>#}
+{#                {% for post in posts %}#}
+{#                    {% for tag in post.tag.all %} {#делаем проход по нашим тегам#}
+{#                        <a >{{ tag }}</a> {#выводим их на экран#}
+    {#                            ставим между тегами запятые#}
+{#                        {% if not forloop.last %}, {% endif %}#}
+{#                    {% endfor %}#}
+{#                {% endfor %}#}
 				</div>
 
     {% endfor %}

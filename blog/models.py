@@ -20,9 +20,12 @@ class Tag(models.Model):
     def __str__(self):
         return self.name
 
+    def __unicode__(self):
+        return self.name
+
     class Meta:
-        verbose_name = "Тег"
-        verbose_name_plural = "Теги"
+        verbose_name = "Тэг"
+        verbose_name_plural = "Тэги"
 
 
 class Post(models.Model):

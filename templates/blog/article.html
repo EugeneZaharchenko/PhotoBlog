@@ -6,7 +6,8 @@
 <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta content="true" name="mssmarttagspreventparsing" />
-        <meta http-equiv="imagetoolbar" content="no" />
+        <script type="text/javascript" src="{% static 'js/jquery-3.1.1.js' %}"></script>
+        <link href="{% static 'blog/images/favicon.ico' %}" rel="icon" type="image/ico" />
         <title>ФОТОблог</title>
         <link href="{% static 'blog/css/style.css' %}" rel="stylesheet" type="text/css" />
 
@@ -122,24 +123,20 @@
 				
 				<!-- Blog Categories -->
 
-				<h3 align="center">Категории блога</h3>
+				<h3 align="center">Категории блога:</h3>
                     {% for c in cat %}
                         <a class="pop_posts" href="{% url "category" id=c.pk %}"> {{ c.name }} </a>
                     {% endfor %}
 
-                <h3 align="center">Ключевые слова</h3>
-                {% for post in posts %}
-                    {% for tag in post.tag.all %} {#делаем проход по нашим тегам#}
-                        <a href="tag/{{ tag }}">{{ tag }}</a> {#выводим их на экран#}
-    {#                            ставим между тегами запятые#}
-                        {% if not forloop.last %}, {% endif %}
-                    {% endfor %}
+                <h3 align="center">Ключевые слова:</h3>
+                {% for t in all_tags %}
+
+                    <a class="pop_posts" href="{% url "tag" id=t.pk %}"> {{ t.name }} </a>
+                    {% if not forloop.last %},{% endif %}
+
                 {% endfor %}
 
-                </div>
-
-{#                <div class="tags">ключевые слова:#}
-
+            </div>
 
 <br/>
 {#            <a class="add_post" style="text-align: center" href="{% url 'post_new' %}"> <h3>Добавить запись</h3> <br/> в блог</a>#}

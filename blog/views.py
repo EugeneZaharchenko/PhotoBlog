@@ -1,3 +1,4 @@
+import datetime
 from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
 from django.shortcuts import redirect
@@ -6,6 +7,7 @@ from . forms import PostForm, CommentForm, PostFormEdit
 #Подключаем пагинатор
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.core.mail import send_mail
 
 
@@ -27,7 +29,11 @@ from django.core.mail import send_mail
 #     return image_with_text_overlay
 
 def base(request):
-    return render(request, 'blog/base.html')
+    # сегодняшняя дата
+    today = datetime.date.today()
+    # выбираем юзеров по текущей дате
+    new_users = User.objects.filter(date_joined__contains=today)
+    return render(request, 'blog/base.html', {"new_users": new_users})
 
 
 def me(request):
@@ -35,6 +41,8 @@ def me(request):
 
 
 def post_list(request):
+    val = {}
+    val['all_tags'] = Tag.objects.all()
     all_post = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
     paginator = Paginator(all_post, 3)
     page = request.GET.get('page')
@@ -46,6 +54,7 @@ def post_list(request):
         post = paginator.page(paginator.num_pages)
     context = {"posts": post}
     context.update(get_categories())
+    context.update(val)
     return render(request, 'blog/post_list.html', context)
 
 
@@ -63,9 +72,10 @@ def category(request, id=None):
 
 
 def tag (request, id):
-    tag = Tag.objects.select_related().get(id=id)
-    posts = tag.post_set.all()
-    return render(request, "blog/post_list.html", {'posts': posts, 'tag': tag})
+    val = {}
+    val['all_tags']=Tag.objects.all()
+    val['posts'] = Post.objects.filter(tag__id=id)
+    return render(request, "blog/post_list.html", val)
 
 
 def search(request):
@@ -84,9 +94,12 @@ def search(request):
 
 
 def post_detail(request, pk):
+    val = {}
+    val['all_tags'] = Tag.objects.all()
     post = get_object_or_404(Post, pk=pk)
     context = {"post": post}
     context.update(get_categories())
+    context.update(val)
     return render(request, 'blog/post_detail.html', {'post': post})
 
 

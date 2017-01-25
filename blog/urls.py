@@ -32,5 +32,4 @@ urlpatterns = [
     url(r'^logout/$', logout, {'next_page': 'base'}, name='logout'),
     url(r'^gallery/', include("gallery.urls")),
     url(r'^person', views.me, name='person'),
-
 ]

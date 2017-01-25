@@ -31,13 +31,23 @@
     <p>Еще не комментировали :( Смелее!</p>
 {% endfor %}
 
-    <!-- Traveller -->
+    <div class="prev-next-post">
+        {% if post.get_previous_by_created_date %}
+            <div class="prev-post">
+            <a href="../{{ post.get_previous_by_created_date.id }}/">
+                << {{ post.get_previous_by_created_date.title }}
+            </a>
+            </div>
+        {% endif %}
 
-{#    <div id="rcnt">#}
-{#    <h2>Traveller</h2>#}
-{#        <a class="pop_posts" >{{ post.COUNTRY.name }}</a>#}
-{#    </div>#}
-{#    href="{% url 'post_list.COUNTRY.name' pk=post.pk%}"#}
+        {% if post.get_next_by_created_date %}
+            <div class="next-post">
+            <a href="../{{ post.get_next_by_created_date.id }}/">
+            {{ post.get_next_by_created_date.title }} >>
+            </a>
+            </div>
+        {% endif %}
+    </div>
 
 {% endblock %}
 
