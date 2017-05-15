@@ -25,9 +25,6 @@
                 #menu {margin:50px 0 0 500px;}
         </style>
         <script src="js/DD_belatedPNG_0.0.7a-min.js" type="text/javascript"></script>
-        <script type="text/javascript">
-                DD_belatedPNG.fix('#logo, .mh, .mw, .mt, .mi, .rss_twitt, .rss, #TwitterCounter, .avatar_frame, .pop_posts');
-        </script>
         <![endif]-->
 
 </head>
@@ -51,7 +48,7 @@
                 {% endif %}
 			</div>
 
-{#			<!-- Search form -->#}
+			<!-- Search form -->
 			<form id="search_form" method="post" action="{% url 'search' %}">
                  {% csrf_token %}
 				<input class="search_field" type="search" value="?" onfocus="clS(1);" onblur="clS(0);"  name="query" id="s" />
@@ -59,7 +56,7 @@
 			</form>
 
 			<div id="logo">
-				<a href="{% url 'person' %}"></a>
+				<a href="{% url 'post_list' %}"></a>
 			</div>
 
 			<!-- Main Menu -->
@@ -83,85 +80,51 @@
 
 				<!-- Post -->
 				<div class="post">
-
-					<!-- Post Details -->
-{#					<div class="post_inf">#}
-{##}
-{#						<span>October 13</span><br />#}
-
-{##}
-{#					</div>#}
-
-					<!-- Post Title - Permalink -->
 					<h1>
-						<a href="{% url 'person' %}">Обо мне...</a>
+						Меня зовут Марина Романюха
 					</h1>
+                </div>
 
 					<!-- Post Content -->
-					<img src="{% static 'blog/images/art_pic1.jpg' %}" alt="art_pic1" />
-
-					{% lorem 3 p %}
-
-                    <p>Основная цель и краткое описание проекта</p>
+					<img src="{% static 'blog/images/Марина_croped.jpg' %}" alt="Мое фото" />
+                    <div class="my_text">
+                        <p>Моя родина – Днепродзержинск, украинский Дрезден.. Мне повезло стать филологом, переводчиком и преподавателем. Я снимаю лет 15, и даже сейчас всё ещё на пленку. Всегда старалась снимать ответственно, да и светлые люди настойчиво доносили мысль о терпении и выдержке. А сейчас и еще и рынок так жестко диктует( Ошибки и случайности теперь дорого стоят. Безусловно, непредвиденное случается, но оно каким-то чудесным образом помогает.. высказаться, что ли.</p>
+                        <p>У меня ФЭД, дальномерный друг с крохотным видоискателем… каждый - сам себе мазохист:).
+                            Я в основном снимаю на цветную пленку – Kodak, Fujicolor, в поездки иногда беру слайд Agfa Precisa. Со слайдом история другая – привлекает ретро after-party с проектором)</p>
+                        <p>Я люблю и ч/б, за свет и тени, за подчеркивание главного и отметание лишнего, за машину времени. Пару раз попалась свежая Свема, добрые люди помогли … с химией в быту</p>
+                        <p>Меня вдохновляют фотографировать, как ни странно, как раз неснятые, пропущенные или «проеханные» в автобусе события, на которые ты опоздал на минуту, или засомневался = не дождался нужного теплого вечернего света, а потом так и не смог прийти в пункт А, не было с тобой твоей камеры и т.д.</p>
+                        <p>Вдохновляют города и то, что они готовы тебе открыть. Мне интересно узнавать, что делает города особенными.</p>
+                        <p>Наверное, не так уж и важно, нажал ты на кнопку или нет, ты все равно увозишь с собой эту историю … я увезла из одного морского города две «проеханные» истории : например, история номер один приключилась в темном арочном переулке, занавешенном оранжевыми строительными тканями. В них бушевал ветер и приоткрывал лазурные волны с барашками.  На лесах неторопливо курил рабочий…</p>
+                        <p>Или другая история ... о том, как надо любить свой город … На булыжной мостовой рабочие латали узор из темных сердечек на светлом фоне, вколачивали маленькими молоточками выпавшие камни. А не загоняли в асфальт!</p>
+                        <p>Вдохновляет уединение и местные языки, так становишься более внимательным.</p>
+                        <p>Добро пожаловать :)</p>
+                    </div>
+                <div class="post">
                     {% block content %}{% endblock %}
 				</div>
 
-            <!-- Comments -->
-				<div class="comments">
-
-					<!-- Comment -->
-{#					<div class="comment">#}
-{##}
-{#						<div class="comm_hdr">#}
-{#							<p>1. Persia Emily <span> | February 20, 2009 04:33</span></p>#}
-{#						</div>#}
-{##}
-{#						<div class="avat">#}
-{#							<img src="{% static 'blog/images/avatar.jpg' %}" alt="avatar" />#}
-{#							<img src="{% static 'blog/images/avatar_frame.png' %}" alt="avatar_frame" class="avatar_frame" />#}
-{#						</div>#}
-{##}
-{#						<p class="comm_txt">#}
-{#							How excited I am! Coquette Part4 comes out!<br />#}
-{#							I love Dryicons' products very much! <br />#}
-{#							<br />#}
-{#							They're all good!#}
-{#						</p>#}
-{##}
-{#					</div>#}
-                </div>
 			</div>
-{##}
-			<!-- Right Container -->
-			<div id="rcnt">
-				 <!-- Sponsored Ads -->
-{#				<h2>Sponsored Ads</h2>#}
-{##}
-{#				<div class="l_lnk">#}
-{##}
-{#					<a href="#"><img src="images/sponsor_ads1.jpg" alt="spon_ad_1" /></a>#}
-{#					<a href="#"><img src="images/sponsor_ads2.jpg" alt="spon_ad_2" /></a>#}
-{#					<a href="#"><img src="images/sponsor_ads3.jpg" alt="spon_ad_3" /></a>#}
-{#					<div>#}
-{#						<a target="_blank" href="http://dryicons.com/advertise">Advertise Here</a>#}
-{#					</div>#}
-{##}
-{#				</div>#}
 
-				<!-- Popular Wallpapers -->
+			<!-- Right Container -->
+            <div align="center"
+                 id="rcnt">
+				 <script src="//yastatic.net/es5-shims/0.0.2/es5-shims.min.js"></script>
+            <script src="//yastatic.net/share2/share.js"></script>
+            <div class="ya-share2" data-services="vkontakte,facebook,gplus,viber,skype">
+            </div>
+
 				<h2>Мои друзья</h2>
 
-				<a class="wall" href="#"><img src="{% static 'blog/images/pop_wall1.jpg' %}" alt="Сергей" /></a>
-				<a class="wall" href="#"><img src="{% static 'blog/images/pop_wall2.jpg' %}" alt="Аня" /></a>
+				<a class="wall" href="https://www.facebook.com/paulo.bernardo"><img src="{% static 'blog/images/Paolo.jpg' %}" alt="Paolo" /></a>
+				<a class="wall" href="https://www.facebook.com/profile.php?id=100001453241525"><img src="{% static 'blog/images/Аня.jpg' %}" alt="Аня" /></a>
 
-			</div>
 
-            <h4 align="center">Посетителей сегодня - {{ new_users|length }}: </h4>
+            <h4 align="center">Посетителей сегодня - {% if new_users|length != 0 %}{{ new_users|length }}: {% endif %} </h4>
             <br/>
                     {% for new_user in new_users %}
                         <h6 align="center">{{ new_user }}{% if not forloop.last %}, {% endif %}</h6>
                         {% empty %}
-                            {% trans "не было никого" %}>
+                        <h6 align="center"> {% trans "не было никого" %} </h6>
                         {% endfor %}
 
 			<br style="clear: both;"/>
@@ -179,12 +142,11 @@
 			<!-- Footer Menu -->
 			<div id="foo_menu">
 
-				<a href="{% url 'base' %}">Главная</a><span>.</span>
-				<a href="{% url 'post_list' %}">Блог</a><span>.</span>
-				<a href="{% url 'gallery' %}">Галерея</a><span>.</span>
-				<a href="#">Вдохновляющее</a><span>.</span>
-				<a href="#">Заходите в гости</a><span>.</span>
-				<a href="#">Контактная информация</a>
+				<a href="{% url 'base' %}">Главная</a>
+				<a href="{% url 'post_list' %}">Блог</a>
+				<a href="{% url 'gallery' %}">Галерея</a>
+				<a href="https://vk.com/id107407517">Заходите в гости</a>
+				<a href="mailto:romanuks@ukr.net">Напишите мне</a>
 
 			</div>
 
@@ -193,7 +155,7 @@
 		</div>
 
 	</div>
-
+</div>
 </body>
 
 </html>

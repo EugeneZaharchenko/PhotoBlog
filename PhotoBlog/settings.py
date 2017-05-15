@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'crispy_forms',
     'django_countries',
     'gallery',
-    'easy_thumbnails'
+    'easy_thumbnails',
+    'watermarker',
 ]
 
 MIDDLEWARE = [

@@ -1,21 +1,28 @@
 {% extends 'blog/article.html' %}
 {% block content %}
-    <div class="post">
+{% load watermark %}
 
+    <div class="post" align="left">
         <h2>  {{ post.title }} </h2>
+    </div>
 
-        <!-- Post Content -->
-        <p class="comm_txt">{{ post.text|linebreaksbr }}</p> <br/>
-{#        <img src="{% url '../uploads/photos/1.JPG' %}" alt="фото к посту" />#}
+    <!-- Post Content -->
+    <div class="my_text">
+        {{ post.text|linebreaksbr }}
+        <br/>
         {% if post.published_date %}
             <div class="date">
                 {{ post.published_date }}
             </div>
         {% endif %}
+    </div>
 
+    <div class="post">
+    {% if post.img %}
+        <a class="btn bg-info" href="{{ post.img.url|watermark:"Logo,position=50%x7%,opacity=75,scale=2.5" }}" target="_blank">перейти к фотографии</a>
+    {% endif %}
         <a class="btn btn-primary" href="{% url 'post_edit' pk=post.pk %}">Редактировать</a><br/>
-{#        <a class="btn btn-default" href="{% url 'post_remove' pk=post.pk %}"><span class="glyphicon glyphicon-remove"></span></a>#}
-        <a class="btn btn-default" href="{% url 'add_comment_to_post' pk=post.pk %}">Комментировать</a><br/>
+
         <a class="btn btn-danger" href="{% url 'post_remove' pk=post.pk %}">Удалить</a><br/>
     </div>
     <hr>
@@ -24,12 +31,14 @@
 {% for comment in post.comments.all %}
     <div class="comment">
         <div class="date">{{ comment.created_date }}</div>
-        <strong>{{ comment.author }}</strong>
+        Комментировал: <strong>{{ comment.author }}</strong>
         <p><span class="posc">{{ comment.text|linebreaks }}</span></p>
     </div>
 {% empty %}
     <p>Еще не комментировали :( Смелее!</p>
 {% endfor %}
+    <a class="btn btn-default" href="{% url 'add_comment_to_post' pk=post.pk %}">Комментировать</a>
+    <br/>
 
     <div class="prev-next-post">
         {% if post.get_previous_by_created_date %}
@@ -41,7 +50,7 @@
         {% endif %}
 
         {% if post.get_next_by_created_date %}
-            <div class="next-post">
+            <div align="right" class="next-post">
             <a href="../{{ post.get_next_by_created_date.id }}/">
             {{ post.get_next_by_created_date.title }} >>
             </a>

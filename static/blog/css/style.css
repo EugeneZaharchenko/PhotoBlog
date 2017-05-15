@@ -1017,7 +1017,7 @@ html {
 }
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1.42857143;
   color: #333333;
   background-color: #ffffff;
@@ -1340,6 +1340,7 @@ a.bg-danger:focus {
   background-color: #e4b9b9;
 }
 .page-header {
+  padding-left: 45%;
   padding-bottom: 9px;
   margin: 40px 0 20px;
   border-bottom: 1px solid #eeeeee;
@@ -1490,6 +1491,7 @@ address {
   margin-left: -15px;
   margin-right: -15px;
 }
+
 .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
   position: relative;
   min-height: 1px;
@@ -5739,9 +5741,9 @@ button.close {
 body {
 	background: url(../images/footer.jpg) no-repeat center bottom;
 	background-color:#747D82;
-	margin:0px;
+	margin:4px;
 	font-family:Verdana;
-	font-size:11px;
+	font-size:13px;
 }
 #wrap {
 	background: url(../images/bg.jpg) center 0px no-repeat;
@@ -5875,13 +5877,27 @@ body {
 	background-color:#FFF;
 	position:relative;
 }
+
 .pst {font-size:18px;
 	text-align: left;
 	position: relative}
 
+.my_text {
+  font-size: 15px
+}
+
+.my_text p {
+  font-size: 15px;
+}
+
+.post_photo {
+	width:622px;
+	margin:88px 0 -10px -15px;
+}
+
 .post {
 	width:622px;	
-	margin:100px 0 0 47px;
+	margin:40px 0 0 47px;
 }
 .post h1 {
 	font-size:29px;
@@ -5932,6 +5948,7 @@ body {
 	margin:50px 0 0 47px;
 }
 .pagination {
+    align-items: center;
 	font-size:15px;
 	height:20px;
 	width:320px;
@@ -5943,7 +5960,7 @@ body {
 	color:#000;
 	display:block;
 	float:left;
-	margin:0 22px;
+	margin:0 24px;
 	width:16px;
 	height:20px;
 	padding:0 0 0 0;
@@ -5952,6 +5969,7 @@ body {
 	background-color:rgba(37, 144, 129, 0.74);
 	color:#FFF;
 }
+
 .pagination span {
 	background-color: rgba(37, 144, 129, 0.74);
 	color:#FFF;
@@ -5960,7 +5978,7 @@ body {
 	padding:0 0 0 5px;
 	display:block;
 	float:left;
-	margin:0 2px;
+	margin:10px 113px;
 }
 .pagination span.prev {
 	width:76px;
@@ -5989,19 +6007,14 @@ body {
 	padding:78px 0 0 16px;
 	display:block;
 }
-#TwitterCounter {
-	background-position:14px -414px;
-	width:110px;
-	height:28px;
-	float:left;
-	padding:78px 0 0 0px;
-	display:block;
-}
+
+
 #rcnt h2 {
 	margin:30px 0 15px 20px;
 }
+
 #rcnt img {
-	border:0px none;
+	border:0 none;
 }
 
 .l_lnk {
@@ -6036,8 +6049,8 @@ body {
 }
 .pop_posts {
 	background-position: 0 -620px;
-	margin:30px 0 5px 15px;
-	padding:0 0 0 26px;
+	margin:20px 0 5px 0;
+	padding:0 0 0 6px;
 	display:block;
 	height:27px;
 	text-decoration:none;
@@ -6071,7 +6084,7 @@ body {
 	opacity:0.7;
 	filter:alpha(opacity=70);
 	font-size:15px;
-	margin:0 6px 0 6px;
+	margin:0 25px 0 6px;
 }
 #foo_menu a:hover {
 	opacity:1;

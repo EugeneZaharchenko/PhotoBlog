@@ -11,23 +11,6 @@ from django.contrib.auth.models import User
 from django.core.mail import send_mail
 
 
-# from PIL import Image, ImageDraw, ImageFont
-#
-#
-# _default_font = ImageFont.truetype('/usr/share/fonts/dejavu/DejaVuSans-Bold.ttf', 24)
-#
-#
-# def add_text_overlay(image, text, font=_default_font):
-#     rgba_image = image.convert('RGBA')
-#     text_overlay = Image.new('RGBA', rgba_image.size, (255, 255, 255, 0))
-#     image_draw = ImageDraw.Draw(text_overlay)
-#     text_size_x, text_size_y = image_draw.textsize(text, font=font)
-#     text_xy = ((rgba_image.size[0] / 2) - (text_size_x / 2), (rgba_image.size[1] / 2) - (text_size_y / 2))
-#     image_draw.text(text_xy, text, font=font, fill=(255, 255, 255, 128))
-#     image_with_text_overlay = Image.alpha_composite(rgba_image, text_overlay)
-#
-#     return image_with_text_overlay
-
 def base(request):
     # сегодняшняя дата
     today = datetime.date.today()
@@ -36,15 +19,11 @@ def base(request):
     return render(request, 'blog/base.html', {"new_users": new_users})
 
 
-def me(request):
-    return render(request, 'blog/me.html')
-
-
 def post_list(request):
     val = {}
     val['all_tags'] = Tag.objects.all()
     all_post = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
-    paginator = Paginator(all_post, 3)
+    paginator = Paginator(all_post, 4)
     page = request.GET.get('page')
     try:
         post = paginator.page(page)
@@ -66,7 +45,15 @@ def get_categories():
 
 def category(request, id=None):
     posts = Post.objects.filter(category__id=id).order_by("-published_date")
-    context = {"posts": posts}
+    paginator = Paginator(posts, 4)
+    page = request.GET.get('page')
+    try:
+        post = paginator.page(page)
+    except PageNotAnInteger:
+        post = paginator.page(1)
+    except EmptyPage:
+        post = paginator.page(paginator.num_pages)
+    context = {"posts": post}
     context.update(get_categories())
     return render(request, "blog/post_list.html", context)
 
@@ -74,8 +61,17 @@ def category(request, id=None):
 def tag (request, id):
     val = {}
     val['all_tags']=Tag.objects.all()
-    val['posts'] = Post.objects.filter(tag__id=id)
-    return render(request, "blog/post_list.html", val)
+    val['posts'] = Post.objects.filter(tag__id=id).order_by("-published_date")
+    paginator = Paginator(val['posts'], 4)
+    page = request.GET.get('page')
+    try:
+        post = paginator.page(page)
+    except PageNotAnInteger:
+        post = paginator.page(1)
+    except EmptyPage:
+        post = paginator.page(paginator.num_pages)
+    context = {"posts": post}
+    return render(request, "blog/post_list.html", context)
 
 
 def search(request):
@@ -87,7 +83,6 @@ def search(request):
         posts = Post.objects.filter(title__icontains=query).order_by("-published_date")
     else:
         posts = []
-
     context = {"posts": posts}
     context.update(get_categories())
     return render(request, "blog/post_list.html", context)

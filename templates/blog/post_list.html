@@ -1,13 +1,13 @@
 {% extends 'blog/article.html' %}
 {% load staticfiles %}
+{% load thumbnail %}
+{% load watermark %}
 
 {% block content %}
     {% for p in posts %}
-{#        <!-- Comments -->#}
-{#        <h4>{{ p.category }}</h4>#}
 				<div class="comments">
 
-{#					<!-- Comment -->#}
+                    <!-- Comment -->
 					<div class="comment">
 
                         <div class="comm_hdr">
@@ -18,43 +18,32 @@
 
                      <div class="post_inf">
                          <br/>
-{#                        <span class="pst">Это было в: {{ p.country }}</span><br/>#}
                         <span class="pst">Комментариев: {{ p.comments.count }}</span><br/>
                         <span class="posn">Автор: {{ p.author }}</span>
                         <hr width="150" align="left" size="3" color="grey">
                      </div>
 
-                     <div class="post">
-{#                             <a href= {% url "gallery/certain_photo" pk=p.pk %}> <span class="posc"> любоваться фотографией  </span></a>#}
+                     <div class="post_photo">
+                        {% if p.img %}
+                            <li class="center-block col-md-4 thumb">
+                            <a class="thumbnail" href="{{ p.img.url|watermark:"Logo,position=50%x7%,opacity=65,scale=2.5" }}" target="_blank">перейти к фотографии</a>
+                            </li>
+                            <img class="img-responsive"
+                                    src="{% thumbnail p.img 400x170 crop %}" alt=""/>
+                        {% endif %}
+                     <br/>
                      </div>
-{#with photos.image.url='uploads/photos' only#}
-{#						<div class="avat">#}
-{#							<img src="{% static 'blog/images/avatar.jpg' %}" alt="avatar" />#}
-{#							<img src="{% static 'blog/images/avatar_frame.png' %}" alt="avatar_frame" class="avatar_frame" />#}
-{#						</div>#}
-					</div>
-{#<h3 align="center">Ключевые слова</h3>#}
-{#                {% for post in posts %}#}
-{#                    {% for tag in post.tag.all %} {#делаем проход по нашим тегам#}
-{#                        <a >{{ tag }}</a> {#выводим их на экран#}
-    {#                            ставим между тегами запятые#}
-{#                        {% if not forloop.last %}, {% endif %}#}
-{#                    {% endfor %}#}
-{#                {% endfor %}#}
-				</div>
 
+					</div>
+				</div>
     {% endfor %}
 
     <!-- Pagination -->
     <div class="pagination">
-    <br/>
         {% if posts.has_previous %}
             <span class="prev"><a href="{% url "post_list" %}?page={{ posts.previous_page_number }}">назад</a></span>
         {% endif %}
 
-    <span class="current pagination">
-            стр. {{ posts.number }} из {{ posts.paginator.num_pages }}
-    </span>
 
        {% if posts.has_next %}
             <a href="?page={{ posts.next_page_number }}">вперед</a>
@@ -63,6 +52,10 @@
         {% for pn in posts.paginator.page_range %}
             <a href="{% url "post_list" %}?page={{ pn }}">{{ pn }}</a>
         {% endfor %}
+    <br/>
+    <span class="current pagination">
+            стр. {{ posts.number }} из {{ posts.paginator.num_pages }}
+    </span>
     </div>
 
 {% endblock %}
