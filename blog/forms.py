@@ -18,7 +18,6 @@ class PostFormEdit(forms.ModelForm):
         exclude = ('published_date', 'author',)
 
 
-
 class CategoryForm(forms.ModelForm):
 
     class Meta:
