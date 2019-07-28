@@ -1,7 +1,7 @@
 {% extends 'blog/article.html' %}
 {% load staticfiles %}
 {% load thumbnail %}
-{% load watermark %}
+{#{% load watermark %}#}
 
 {% block content %}
     {% for p in posts %}
@@ -26,7 +26,8 @@
                      <div class="post_photo">
                         {% if p.img %}
                             <li class="center-block col-md-4 thumb">
-                            <a class="thumbnail" href="{{ p.img.url|watermark:"Logo,position=50%x7%,opacity=65,scale=2.5" }}" target="_blank">перейти к фотографии</a>
+                            <a class="thumbnail" href="{{ p.img.url }}" target="_blank">перейти к фотографии</a>
+{#                            <a class="thumbnail" href="{{ p.img.url|watermark:"Logo,position=50%x7%,opacity=65,scale=2.5" }}" target="_blank">перейти к фотографии</a>#}
                             </li>
                             <img class="img-responsive"
                                     src="{% thumbnail p.img 400x170 crop %}" alt=""/>
