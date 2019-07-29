@@ -1,10 +1,10 @@
-
 from django.db import models
 from django.utils import timezone
+from users.models import CustomUser
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=100, verbose_name="Название", unique=True, )
+    name = models.CharField(max_length=100, verbose_name="Название", unique=True, blank=False)
 
     def __str__(self):
         return self.name
@@ -29,14 +29,14 @@ class Tag(models.Model):
 
 
 class Post(models.Model):
-
-    author = models.ForeignKey('auth.User', on_delete=None)
+    author = models.ForeignKey('users.CustomUser', on_delete=None)
+    # author = models.ForeignKey('auth.User', on_delete=None)
     title = models.CharField(max_length=100, unique=True, verbose_name="Заголовок")
     text = models.TextField(verbose_name="Текст")
     created_date = models.DateTimeField(
-            default=timezone.now)
+        default=timezone.now)
     published_date = models.DateTimeField(
-            blank=True, null=True)
+        blank=True, null=True)
     category = models.ForeignKey(Category, default=None, verbose_name="Категория", on_delete=None)
     img = models.ImageField(blank=True, upload_to="posts", verbose_name="Картинка", default=None)
     tag = models.ManyToManyField(Tag, verbose_name="Тег")
@@ -54,7 +54,6 @@ class Post(models.Model):
 
 
 class Comment(models.Model):
-
     GENDER_CHOICES = (('male', 'Мужчина'), ('female', 'Женщина'), ('it', 'не знаю'))
 
     post = models.ForeignKey('blog.Post', related_name='comments', on_delete=None)

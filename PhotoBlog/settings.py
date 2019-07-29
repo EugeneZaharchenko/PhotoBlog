@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'users.apps.UsersConfig',
     'blog',
     'crispy_forms',
     'django_countries',
@@ -42,6 +43,8 @@ INSTALLED_APPS = [
     'easy_thumbnails',
     # 'watermarker',
 ]
+AUTH_USER_MODEL = 'users.CustomUser'
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
