@@ -6,20 +6,20 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta content="true" name="mssmarttagspreventparsing" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta content="true" name="mssmarttagspreventparsing"/>
 
-        <title>ФОТОблог</title>
-        <link href="{% static 'blog/css/style.css' %}" rel="stylesheet" type="text/css" />
+    <title>ФОТОблог</title>
+    <link href="{% static 'blog/css/style.css' %}" rel="stylesheet" type="text/css"/>
 
-        <!-- IE fixes -->
-        <!--[if IE 7]>
+    <!-- IE fixes -->
+    <!--[if IE 7]>
         <style type="text/css">
                 #logo {top:50px;}
                 #menu {margin:50px 0 0 500px;}
         </style>
         <![endif]-->
-        <!--[if lte IE 6]>
+    <!--[if lte IE 6]>
         <style type="text/css">
                 #hdl {margin:0px 0 0 250px;}
                 #logo {top:50px;}
@@ -34,107 +34,103 @@
 </head>
 
 <body>
-	<!-- Wrap Div -->
-	<div id="wrap">
+<!-- Wrap Div -->
+<div id="wrap">
 
-		<!-- Header -->
-		<div id="hdr">
+    <!-- Header -->
+    <div id="hdr">
 
-			<!-- Top Menu -->
-			<div id="hdl">
-				<a href="{% url 'base' %}">Главная</a>
-				<a href="{% url 'post_list' %}" class="hl">Блог</a>
-                <a href="{% url 'gallery' %}" class="hl">Галерея</a>
-				{% if user.is_authenticated %}
-                    <a href="{% url 'logout' %}">Уйти по-английски, {{ user }}?</a>
-                {% else%}
-                    <a href="{% url 'login' %}" class="hl">Войти</a>
-                {% endif %}
-			</div>
+        <!-- Top Menu -->
+        <div id="hdl">
+            <a href="{% url 'base' %}">Главная</a>
+            <a href="{% url 'post_list' %}" class="hl">Блог</a>
+            <a href="{% url 'gallery' %}" class="hl">Галерея</a>
+            {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}">Покинуть сайт, {{ user }}?</a>
+            {% else %}
+                <a href="{% url 'login' %}" class="hl">Войти</a>
+            {% endif %}
+        </div>
 
-{#			<!-- Search form -->#}
-			<form id="search_form" method="post" action="{% url 'search' %}">
-                 {% csrf_token %}
-				<input class="search_field" type="search" value="?" onfocus="clS(1);" onblur="clS(0);"  name="query" id="s" />
-				<input class="search_button" type="submit"  value="" id="searchsubmit" />
-			</form>
+        <form id="search_form" method="post" action="{% url 'search' %}">
+            {% csrf_token %}
+            <input class="search_field" type="search" value="?" onfocus="clS(1);" onblur="clS(0);" name="query" id="s"/>
+            <input class="search_button" type="submit" value="" id="searchsubmit"/>
+        </form>
 
+        <div id="logo">
+            <a href="{% url 'person' %}"></a>
+        </div>
 
-		        <!-- Logo -->
+        <!-- Main Menu -->
+        <div id="menu">
+            <a class="mh" href="{% url 'base' %}">Главная</a>
+            <a class="mt" href="{% url 'post_list' %}">Блог</a>
+            <a class="mw" href="{% url 'gallery' %}">Галерея</a>
+            {% if user.is_authenticated %}
+                <a class="mi" href="{% url 'logout' %}">Выйти</a>
+            {% else %}
+                <a class="mi" href="{% url 'login' %}">Войти</a>
+                <a class="mi" href="{% url 'signup' %}">Регистрироваться</a>
+            {% endif %}
+        </div>
+    </div>
 
-			<div id="logo">
-				<a href="{% url 'person' %}"></a>
-			</div>
+    <!-- Container -->
+    <div id="cnt">
 
-			<!-- Main Menu -->
-			<div id="menu">
-				<a class="mh" href="{% url 'base' %}">Главная</a>
-				<a class="mt" href="{% url 'post_list' %}">Блог</a>
-				<a class="mw" href="{% url 'gallery' %}">Галерея</a>
-                {% if user.is_authenticated %}
-                    <a class="mi" href="{% url 'logout' %}">Выйти</a>
-                {% else%}
-                    <a class="mi" href="{% url 'login' %}">Войти</a>
-                {% endif %}
-			</div>
-		</div>
+        <!-- Left Container -->
+        <div id="lcnt">
 
-		<!-- Container -->
-		<div id="cnt">
+            <!-- Post -->
+            <div class="post">
 
-			<!-- Left Container -->
-			<div id="lcnt">
+                <!-- Photo Details -->
+                <div class="col-lg-12">
+                    <h1 class="page-header">Галерея миниатюр</h1>
+                </div>
 
-				<!-- Post -->
-				<div class="post">
+                <!-- Photo Content -->
+                {% block photo %}{% endblock %}
+            </div>
+        </div>
 
-					<!-- Photo Details -->
-					<div class="col-lg-12">
-                        <h1 class="page-header">Галерея миниатюр</h1>
-                    </div>
+        {#				<!-- Blog Categories -->#}
+        {##}
+        <h3 align="center">Страны</h3>
+        {% for c in countries %}
+            <a class="pop_posts" href="{% url "country" id=c.pk %}"> тест вывода стран </a>
+        {% endfor %}
+        <br/>
 
-					<!-- Photo Content -->
-                    {% block photo %}{% endblock %}
-				</div>
-			</div>
+    </div>
+    <br style="clear: both;"/>
 
-{#				<!-- Blog Categories -->#}
-{##}
-				<h3 align="center">Страны</h3>
-                    {% for c in countries %}
-                        <a class="pop_posts" href="{% url "country" id=c.pk %}"> тест вывода стран </a>
-                    {% endfor %}
-                <br/>
-
-			</div>
-			<br style="clear: both;"/>
-
-		</div>
+</div>
 
 
+<!-- Footer -->
+<div id="foo">
 
-	<!-- Footer -->
-	<div id="foo">
+    <!-- Footer Container -->
+    <div id="foo_d">
 
-		<!-- Footer Container -->
-		<div id="foo_d">
+        <!-- Footer Menu -->
+        <div id="foo_menu">
 
-			<!-- Footer Menu -->
-			<div id="foo_menu">
+            <a href="{% url 'base' %}">Главная</a><span>.</span>
+            <a href="{% url 'post_list' %}">Блог</a><span>.</span>
+            <a href="{% url 'gallery' %}">Галерея</a><span>.</span>
+            <a href="#">Вдохновляющее</a><span>.</span>
+            <a href="#">Заходите в гости</a><span>.</span>
+            <a href="#">Контактная информация</a>
 
-				<a href="{% url 'base' %}">Главная</a><span>.</span>
-				<a href="{% url 'post_list' %}">Блог</a><span>.</span>
-				<a href="{% url 'gallery' %}">Галерея</a><span>.</span>
-				<a href="#">Вдохновляющее</a><span>.</span>
-				<a href="#">Заходите в гости</a><span>.</span>
-				<a href="#">Контактная информация</a>
+        </div>
+        <p>2019 JWebClub <a target="_blank" href="http://jweb.club/">Понравился сайт? Закажите </a></p>
 
-			</div>
-			<p>&copy;2016 J0nnyZ website <a target="_blank" href="http://dryicons.com">Понравился сайт? Закажите себе</a></p>
+    </div>
 
-		</div>
-
-	</div>
+</div>
 
 </body>
 

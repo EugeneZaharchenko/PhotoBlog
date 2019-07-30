@@ -1,7 +1,7 @@
-from django.urls import path
-from django.conf.urls import include
+from django.urls import path, include
 from django.contrib import admin
 from django.contrib.auth.views import auth_login, auth_logout
+from django.views.generic.base import TemplateView
 from blog.views import base, category
     # , obtain_countries
     # , search
@@ -13,9 +13,11 @@ from django.conf.urls.static import static
 #     # url(r'^search/$', search, name='search'),
 
 urlpatterns = [
-    path('login/', auth_login, name='login'),
-    path('logout/', auth_logout, {'next_page': "base"}, name='logout'),
+    # path('login/', auth_login, name='login'),
+    # path('logout/', auth_logout, {'next_page': "base"}, name='logout'),
     path('admin/', admin.site.urls),
+    path('users/', include('users.urls')),
+    path('users/', include('django.contrib.auth.urls')),
     path('', base, name='base'),
     path('gallery/', include("gallery.urls")),
     path('', include('blog.urls'))
