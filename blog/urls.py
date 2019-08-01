@@ -1,6 +1,6 @@
 from django.urls import path, re_path, include
 from . import views
-from django.contrib.auth import login, logout
+from django.contrib.auth.views import LoginView
 
 urlpatterns = [
     re_path(r'^post/(?P<pk>[0-9]+)/edit/$', views.post_edit, name='post_edit'),
@@ -12,7 +12,7 @@ urlpatterns = [
     path('post/tag/<int:pk>/', views.tag, name='tag'),
     path('post/search/', views.search, name='search'),
     path('post/', views.post_list, name='post_list'),
-    path('login/', login, name='login'),
-    path('logout/', logout, {'next_page': 'base'}, name='logout'),
+    path('login/', LoginView.as_view(), name='login'),
+    path('logout/', views.logout_view, name='logout'),
     path('gallery/', include("gallery.urls")),
 ]

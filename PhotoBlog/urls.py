@@ -13,13 +13,12 @@ from django.conf.urls.static import static
 #     # url(r'^search/$', search, name='search'),
 
 urlpatterns = [
-    # path('login/', auth_login, name='login'),
-    # path('logout/', auth_logout, {'next_page': "base"}, name='logout'),
-    path('admin/', admin.site.urls),
-    path('users/', include('users.urls')),
-    path('users/', include('django.contrib.auth.urls')),
-    path('', base, name='base'),
-    path('gallery/', include("gallery.urls")),
-    path('', include('blog.urls'))
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
+                  path('', base, name='base'),
+                  # path('login/', auth_login, name='login'),
+                  # path('logout/', auth_logout, {'next_page': "base"}, name='logout'),
+                  path('admin/', admin.site.urls),
+                  # path('users/', include('users.urls')),
+                  # path('users/', include('django.contrib.auth.urls')),
+                  path('gallery/', include("gallery.urls")),
+                  path('', include('blog.urls'))
+              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

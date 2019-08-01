@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
+from django.contrib.auth import logout
 from django.shortcuts import redirect
 from . models import Post, Category, Tag
 from . forms import PostForm, CommentForm, PostFormEdit
@@ -29,10 +30,13 @@ from django.core.mail import send_mail
 def base(request):
     return render(request, 'blog/base.html')
 
+# def me(request):
+#     return render(request, 'blog/me.html')
 
-def me(request):
-    return render(request, 'blog/me.html')
-
+@login_required
+def logout_view(request):
+    logout(request)
+    return redirect('base')
 
 def post_list(request):
     val = {}
@@ -141,7 +145,8 @@ def add_comment_to_post(request, pk):
             comment = form.save(commit=False)
             comment.post = post
             comment.save()
-            send_mail('Комментарий', 'Автором: ' + str(auth) + ' был добавлен комментарий: ' + str(comm) + '. Электронный адрес автора: ' + str(mail), mail, ['romanuks@ukr.net'])
+            send_mail('Комментарий', 'Автором: ' + str(auth) + ' был добавлен комментарий: ' + str(comm)
+                      + '. Электронный адрес автора: ' + str(mail), mail, ['romanuks@ukr.net'])
             return redirect('post_detail', pk=post.pk)
     else:
         form = CommentForm()
