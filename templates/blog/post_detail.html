@@ -1,6 +1,6 @@
 {% extends 'blog/article.html' %}
 {% block content %}
-{% load watermark %}
+{#{% load watermark %}#}
 
     <div class="post" align="left">
         <h2>  {{ post.title }} </h2>
@@ -19,7 +19,8 @@
 
     <div class="post">
     {% if post.img %}
-        <a class="btn bg-info" href="{{ post.img.url|watermark:"Logo,position=50%x7%,opacity=75,scale=2.5" }}" target="_blank">перейти к фотографии</a>
+        <a class="btn bg-info" href="{{ post.img.url}}" target="_blank">перейти к фотографии</a>
+{#        <a class="btn bg-info" href="{{ post.img.url|watermark:"Logo,position=50%x7%,opacity=75,scale=2.5" }}" target="_blank">перейти к фотографии</a>#}
     {% endif %}
         <a class="btn btn-primary" href="{% url 'post_edit' pk=post.pk %}">Редактировать</a><br/>
 

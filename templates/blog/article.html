@@ -104,13 +104,13 @@
 
 				<h3 align="center">Категории блога:</h3>
                     {% for c in cat %}
-                        <a class="pop_posts" href="{% url "category" id=c.pk %}"> {{ c.name|title }} </a>
+                        <a class="pop_posts" href="{% url "category" pk=c.pk %}"> {{ c.name|title }} </a>
                     {% endfor %}
 
                 <h3 align="center">Ключевые слова:</h3>
                 {% for t in all_tags %}
 
-                    <a class="pop_posts" href="{% url "tag" id=t.pk %}"> {{ t.name|lower }} </a>
+                    <a class="pop_posts" href="{% url "tag" pk=t.pk %}"> {{ t.name|lower }} </a>
 
                 {% endfor %}
 
