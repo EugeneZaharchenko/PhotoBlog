@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
 from django.shortcuts import redirect
+from django.views.generic import ListView
 from . models import Post, Category, Tag
 from . forms import PostForm, CommentForm, PostFormEdit
 #Подключаем пагинатор
@@ -33,23 +34,28 @@ def base(request):
 def me(request):
     return render(request, 'blog/me.html')
 
+class PostListView(ListView):
+    queryset = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
+    context_object_name = 'posts'
+    paginate_by = 2
+    template_name = 'blog/post_list.html'
 
-def post_list(request):
-    val = {}
-    val['all_tags'] = Tag.objects.all()
-    all_post = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
-    paginator = Paginator(all_post, 3)
-    page = request.GET.get('page')
-    try:
-        post = paginator.page(page)
-    except PageNotAnInteger:
-        post = paginator.page(1)
-    except EmptyPage:
-        post = paginator.page(paginator.num_pages)
-    context = {"posts": post}
-    context.update(get_categories())
-    context.update(val)
-    return render(request, 'blog/post_list.html', context)
+# def post_list(request):
+#     val = {}
+#     val['all_tags'] = Tag.objects.all()
+#     all_post = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
+#     paginator = Paginator(all_post, 3)
+#     page = request.GET.get('page')
+#     try:
+#         post = paginator.page(page)
+#     except PageNotAnInteger:
+#         post = paginator.page(1)
+#     except EmptyPage:
+#         post = paginator.page(paginator.num_pages)
+#     context = {"posts": post}
+#     context.update(get_categories())
+#     context.update(val)
+#     return render(request, 'blog/post_list.html', context)
 
 
 def get_categories():

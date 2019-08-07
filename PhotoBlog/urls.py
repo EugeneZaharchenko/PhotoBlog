@@ -8,7 +8,6 @@ from blog.views import base, category
 from django.conf import settings
 from django.conf.urls.static import static
 
-
 # urlpatterns = [
 #     # url(r'^search/$', search, name='search'),
 

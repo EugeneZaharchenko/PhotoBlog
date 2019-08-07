@@ -40,7 +40,7 @@
 			<div id="hdl">
 				<a href="{% url 'base' %}">Обо мне</a>
 				<a href="{% url 'post_list' %}" class="hl">Блог</a>
-                <a href="{% url 'gallery' %}" class="hl">Галерея</a>
+{#                <a href="{% url 'gallery' %}" class="hl">Галерея</a>#}
                 {% if user.is_authenticated %}
                     <a href="{% url 'logout' %}">Уйти по-английски, {{ user }}?</a>
                 {% else%}
@@ -49,11 +49,11 @@
 			</div>
 
 			<!-- Search form -->
-    		<form id="search_form" method="post" action="{% url 'search' %}">
-                 {% csrf_token %}
-				<input type="search" value="?" onfocus="clS(1);" onblur="clS(0);"  name="query" id="s" />
-				<input class="btn btn-default" type="submit"  value="" id="searchsubmit" />
-			</form>
+{#    		<form id="search_form" method="post" action="{% url 'search' %}">#}
+{#                 {% csrf_token %}#}
+{#				<input type="search" value="?" onfocus="clS(1);" onblur="clS(0);"  name="query" id="s" />#}
+{#				<input class="btn btn-default" type="submit"  value="" id="searchsubmit" />#}
+{#			</form>#}
 
 		        <!-- Logo -->
 			<div id="logo">
@@ -64,7 +64,7 @@
 			<div id="menu">
 				<a class="mh" href="{% url 'base' %}">Обо мне</a>
 				<a class="mt" href="{% url 'post_list' %}">Блог</a>
-				<a class="mw" href="{% url 'gallery' %}">Галерея</a>
+{#				<a class="mw" href="{% url 'gallery' %}">Галерея</a>#}
 				{% if user.is_authenticated %}
                     <a class="mi" href="{% url 'logout' %}">Выйти</a>
                 {% else%}
@@ -98,19 +98,19 @@
             </div>
                 <br/>
 
-            <a class="btn btn-success btn-lg" href="{% url 'post_new' %}">Добавить запись</a>
+{#            <a class="btn btn-success btn-lg" href="{% url 'post_new' %}">Добавить запись</a>#}
 
 				<!-- Blog Categories -->
 
 				<h3 align="center">Категории блога:</h3>
                     {% for c in cat %}
-                        <a class="pop_posts" href="{% url "category" id=c.pk %}"> {{ c.name|title }} </a>
+{#                        <a class="pop_posts" href="{% url "category" id=c.pk %}"> {{ c.name|title }} </a>#}
                     {% endfor %}
 
                 <h3 align="center">Ключевые слова:</h3>
                 {% for t in all_tags %}
 
-                    <a class="pop_posts" href="{% url "tag" id=t.pk %}"> {{ t.name|lower }} </a>
+{#                    <a class="pop_posts" href="{% url "tag" id=t.pk %}"> {{ t.name|lower }} </a>#}
 
                 {% endfor %}
 
@@ -135,7 +135,7 @@
 
 				<a href="{% url 'base' %}">Обо мне</a>
 				<a href="{% url 'post_list' %}">Блог</a>
-				<a href="{% url 'gallery' %}">Галерея</a>
+{#				<a href="{% url 'gallery' %}">Галерея</a>#}
 				<a href="https://vk.com/id107407517">Заходите в гости</a>
                 <a href="mailto:romanuks@ukr.net">Напишите мне</a>
 

@@ -49,11 +49,11 @@
 			</div>
 
 			<!-- Search form -->
-			<form id="search_form" method="post" action="{% url 'search' %}">
-                 {% csrf_token %}
-				<input class="search_field" type="search" value="?" onfocus="clS(1);" onblur="clS(0);"  name="query" id="s" />
-				<input class="btn btn-default" type="submit"  value="" id="searchsubmit" />
-			</form>
+{#			<form id="search_form" method="post" action="{% url 'search' %}">#}
+{#                 {% csrf_token %}#}
+{#				<input class="search_field" type="search" value="?" onfocus="clS(1);" onblur="clS(0);"  name="query" id="s" />#}
+{#				<input class="btn btn-default" type="submit"  value="" id="searchsubmit" />#}
+{#			</form>#}
 
 			<div id="logo">
 				<a href="{% url 'post_list' %}"></a>

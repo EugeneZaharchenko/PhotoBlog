@@ -44,7 +44,7 @@
 			<div id="hdl">
 				<a href="{% url 'base' %}">Главная</a>
 				<a href="{% url 'post_list' %}" class="hl">Блог</a>
-                <a href="{% url 'gallery' %}" class="hl">Галерея</a>
+{#                <a href="{% url 'gallery' %}" class="hl">Галерея</a>#}
 				{% if user.is_authenticated %}
                     <a href="{% url 'logout' %}">Уйти по-английски, {{ user }}?</a>
                 {% else%}
@@ -53,14 +53,11 @@
 			</div>
 
 {#			<!-- Search form -->#}
-			<form id="search_form" method="post" action="{% url 'search' %}">
-                 {% csrf_token %}
-				<input class="search_field" type="search" value="?" onfocus="clS(1);" onblur="clS(0);"  name="query" id="s" />
-				<input class="search_button" type="submit"  value="" id="searchsubmit" />
-			</form>
-
-
-		        <!-- Logo -->
+{#			<form id="search_form" method="post" action="{% url 'search' %}">#}
+{#                 {% csrf_token %}#}
+{#				<input class="search_field" type="search" value="?" onfocus="clS(1);" onblur="clS(0);"  name="query" id="s" />#}
+{#				<input class="search_button" type="submit"  value="" id="searchsubmit" />#}
+{#			</form>#}
 
 			<div id="logo">
 				<a href="{% url 'person' %}"></a>
