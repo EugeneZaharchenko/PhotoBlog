@@ -4,7 +4,8 @@ from . import views
 from django.contrib.auth import login, logout
 
 urlpatterns = [
-    path('posts/', views.PostListView.as_view(), name='post_list')
+    path('posts/', views.PostListView.as_view(), name='post_list'),
+    path('post/category/<int:pk>/', views.category, name='category'),
     # url(r'^post/(?P<pk>[0-9]+)/edit/$', views.post_edit, name='post_edit'),
     # url(r'^post/new/$', views.post_new, name='post_new'),
     # url(r'^post/(?P<pk>\d+)/comment/$', views.add_comment_to_post, name='add_comment_to_post'),

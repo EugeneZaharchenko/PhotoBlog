@@ -2,7 +2,8 @@ from django.urls import path
 from django.conf.urls import include
 from django.contrib import admin
 from django.contrib.auth.views import auth_login, auth_logout
-from blog.views import base, category
+from blog.views import base
+    # , category
     # , obtain_countries
     # , search
 from django.conf import settings

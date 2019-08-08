@@ -22,7 +22,7 @@ def upload(request):
 
 # def certain_photo(request, pk):
 #     photo = get_object_or_404(Photo, pk=pk)
-#     return render(request, 'gallery/base.html', {"photos": photo})
+#     return render(request, 'gallery/indes.html', {"photos": photo})
 
 
 def get_countries():

@@ -34,6 +34,7 @@ def base(request):
 def me(request):
     return render(request, 'blog/me.html')
 
+
 class PostListView(ListView):
     queryset = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
     context_object_name = 'posts'
@@ -65,11 +66,18 @@ def get_categories():
 
 
 def category(request, id=None):
-    posts = Post.objects.filter(category__id=id).order_by("-published_date")
-    context = {"posts": posts}
+    posts = Post.objects.filter(category__id=id).order_by('-published_date')
+    context = {'posts': posts}
     context.update(get_categories())
-    return render(request, "blog/post_list.html", context)
+    return render(request, 'blog/post_list.html', context)
 
+
+# class CategoryListView(ListView):
+#     queryset = Post.objects.filter(category__id=id).order_by("-published_date")
+#     # context = {"posts": posts}
+#     # context.update(get_categories())
+#     # context_object_name = 'categories'
+#     template_name = 'blog/post_list.html'
 
 def tag(request, id):
     val = {}

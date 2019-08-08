@@ -40,23 +40,8 @@
     {% endfor %}
 
     <!-- Pagination -->
-    <div class="pagination">
-        {% if posts.has_previous %}
-            <span class="prev"><a href="{% url "post_list" %}?page={{ posts.previous_page_number }}">назад</a></span>
-        {% endif %}
-
-
-       {% if posts.has_next %}
-            <a href="?page={{ posts.next_page_number }}">вперед</a>
-       {% endif %}
-
-        {% for pn in posts.paginator.page_range %}
-            <a href="{% url "post_list" %}?page={{ pn }}">{{ pn }}</a>
-        {% endfor %}
-    <br/>
-    <span class="current pagination">
-            стр. {{ posts.number }} из {{ posts.paginator.num_pages }}
-    </span>
-    </div>
+    {% block pagination%}
+        {% include "blog/pagination.html" with page=page_obj %}
+    {% endblock %}
 
 {% endblock %}
