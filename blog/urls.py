@@ -11,7 +11,7 @@ urlpatterns = [
     path('post/category/<int:pk>/', views.category, name="category"),
     path('post/tag/<int:pk>/', views.tag, name='tag'),
     path('post/search/', views.search, name='search'),
-    path('post/', views.post_list, name='post_list'),
+    path('posts/', views.PostListView.as_view(), name='post_list'),
     path('login/', LoginView.as_view(), name='login'),
     path('logout/', views.logout_view, name='logout'),
     path('signup/', include("users.urls")),
