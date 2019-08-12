@@ -29,7 +29,7 @@ class Tag(models.Model):
 
 
 class Post(models.Model):
-    author = models.ForeignKey('users.CustomUser', on_delete=None)
+    author = models.ForeignKey('users.CustomUser', on_delete=models.PROTECT)
     # author = models.ForeignKey('auth.User', on_delete=None)
     title = models.CharField(max_length=100, unique=True, verbose_name="Заголовок")
     text = models.TextField(verbose_name="Текст")
@@ -37,8 +37,8 @@ class Post(models.Model):
         default=timezone.now)
     published_date = models.DateTimeField(
         blank=True, null=True)
-    category = models.ForeignKey(Category, default=None, verbose_name="Категория", on_delete=None)
-    img = models.ImageField(blank=True, upload_to="posts", verbose_name="Картинка", default=None)
+    category = models.ForeignKey(Category, default=None, verbose_name="Категория", on_delete=models.CASCADE)
+    img = models.ImageField(blank=True, upload_to="posts", verbose_name="Картинка", default=models.CASCADE)
     tag = models.ManyToManyField(Tag, verbose_name="Тег")
 
     def publish(self):
@@ -54,9 +54,9 @@ class Post(models.Model):
 
 
 class Comment(models.Model):
-    GENDER_CHOICES = (('male', 'Мужчина'), ('female', 'Женщина'), ('it', 'не знаю'))
+    GENDER_CHOICES = (('male', 'Мужчина'), ('female', 'Женщина'), ('other', '...'))
 
-    post = models.ForeignKey('blog.Post', related_name='comments', on_delete=None)
+    post = models.ForeignKey('blog.Post', related_name='comments', on_delete=models.CASCADE)
     author = models.CharField(max_length=200)
     gender = models.CharField(max_length=9, choices=GENDER_CHOICES, default='it')
     text = models.TextField()

@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'django_countries',
     'gallery',
     'easy_thumbnails',
+    # 'users'
     # 'watermarker',
 ]
 AUTH_USER_MODEL = 'users.CustomUser'

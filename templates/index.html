@@ -46,9 +46,10 @@
             <a href="{% url 'post_list' %}" class="hl">Блог</a>
             <a href="{% url 'gallery' %}" class="hl">Галерея</a>
             {% if user.is_authenticated %}
-                <a href="{% url 'logout' %}">Покинуть сайт, {{ user }}?</a>
+                <a href="{% url 'logout' %}">Покинуть сайт, {{ user.username }}?</a>
             {% else %}
                 <a href="{% url 'login' %}" class="hl">Войти</a>
+                <a class="mi" href="{% url 'signup' %}">Регистрироваться</a>
             {% endif %}
         </div>
 
@@ -78,25 +79,25 @@
 
     <!-- Container -->
     <div id="cnt">
+    {% block content %}
 
+    {% endblock %}
         <!-- Left Container -->
         <div id="lcnt">
 
             <!-- Post -->
             <div class="post">
-
-                <!-- Photo Details -->
-                <div class="col-lg-12">
-                    <h1 class="page-header">Галерея миниатюр</h1>
-                </div>
+{##}
+{#                <!-- Photo Details -->#}
+{#                <div class="col-lg-12">#}
+{#                    <h1 class="page-header">Галерея миниатюр</h1>#}
+{#                </div>#}
 
                 <!-- Photo Content -->
                 {% block photo %}{% endblock %}
             </div>
         </div>
 
-        {#				<!-- Blog Categories -->#}
-        {##}
         <h3 align="center">Страны</h3>
         {% for c in countries %}
             <a class="pop_posts" href="{% url "country" id=c.pk %}"> тест вывода стран </a>
@@ -121,8 +122,6 @@
             <a href="{% url 'base' %}">Главная</a><span>.</span>
             <a href="{% url 'post_list' %}">Блог</a><span>.</span>
             <a href="{% url 'gallery' %}">Галерея</a><span>.</span>
-            <a href="#">Вдохновляющее</a><span>.</span>
-            <a href="#">Заходите в гости</a><span>.</span>
             <a href="#">Контактная информация</a>
 
         </div>
