@@ -46,7 +46,7 @@
             <a href="{% url 'post_list' %}" class="hl">Блог</a>
             <a href="{% url 'gallery' %}" class="hl">Галерея</a>
             {% if user.is_authenticated %}
-                <a href="{% url 'logout' %}">Покинуть сайт, {{ user.username }}?</a>
+                <a href="{% url 'logout' %}">{{ user.username }}, покинуть сайт?</a>
             {% else %}
                 <a href="{% url 'login' %}" class="hl">Войти</a>
                 <a class="mi" href="{% url 'signup' %}">Регистрироваться</a>

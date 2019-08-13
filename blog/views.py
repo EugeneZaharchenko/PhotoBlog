@@ -1,8 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
-from django.contrib.auth import logout
 from django.shortcuts import redirect
-from django.views.generic import ListView
+from django.views.generic import ListView, TemplateView
 from . models import Post, Category, Tag
 from . forms import PostForm, CommentForm, PostFormEdit
 #Подключаем пагинатор
@@ -28,16 +27,28 @@ from django.core.mail import send_mail
 #
 #     return image_with_text_overlay
 
-def base(request):
-    return render(request, 'blog/base.html')
+def get_categories():
+    all_categories = Category.objects.all()
+    count = all_categories.count()
+    return {'categories': all_categories, 'categories_count': count}
 
-# def me(request):
-#     return render(request, 'blog/me.html')
 
-@login_required
-def logout_view(request):
-    logout(request)
-    return redirect('base')
+class BaseView(TemplateView):
+    template_name = 'blog/base.html'
+
+    def get(self, request):
+        if request.user.is_authenticated:
+            all_categories = Category.objects.all()
+            count = all_categories.count()
+            ctx = {}
+            ctx.update(get_categories())
+            return render(request, self.template_name, ctx)
+        else:
+            return render(request, self.template_name, {})
+
+# def base(request):
+#     return render(request, 'blog/base.html')
+
 
 class PostListView(ListView):
     queryset = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
@@ -61,12 +72,6 @@ class PostListView(ListView):
 #     context.update(get_categories())
 #     context.update(val)
 #     return render(request, 'blog/post_list.html', context)
-
-
-def get_categories():
-    all_categories = Category.objects.all()
-    count = all_categories.count()
-    return {'cat': all_categories, 'count': count}
 
 
 def category(request, id=None):

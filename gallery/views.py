@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 
 def gallery(request):
     photos = Photo.objects.all()
-    return render(request, "gallery/base.html", {"photos": photos})
+    return render(request, "gallery/gallery.html", {"photos": photos})
 
 
 @login_required()
@@ -35,4 +35,4 @@ def country(request, id=None):
     photos = Photo.objects.filter(country_id=id)
     context = {"photos": photos}
     context.update(get_countries())
-    return render(request, "gallery/base.html", context)
+    return render(request, "gallery/gallery.html", context)
