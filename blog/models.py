@@ -29,7 +29,7 @@ class Tag(models.Model):
 
 
 class Post(models.Model):
-    author = models.ForeignKey('users.CustomUser', on_delete=models.PROTECT)
+    author = models.ForeignKey('users.CustomUser', on_delete=models.CASCADE)
     # author = models.ForeignKey('auth.User', on_delete=None)
     title = models.CharField(max_length=100, unique=True, verbose_name="Заголовок")
     text = models.TextField(verbose_name="Текст")
@@ -38,7 +38,7 @@ class Post(models.Model):
     published_date = models.DateTimeField(
         blank=True, null=True)
     category = models.ForeignKey(Category, default=None, verbose_name="Категория", on_delete=models.CASCADE)
-    img = models.ImageField(blank=True, upload_to="posts", verbose_name="Картинка", default=models.CASCADE)
+    img = models.ImageField(blank=True, upload_to="posts", verbose_name="Картинка", default=None)
     tag = models.ManyToManyField(Tag, verbose_name="Тег")
 
     def publish(self):
