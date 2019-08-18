@@ -4,33 +4,35 @@
 {#{% load watermark %}#}
 
 {% block content %}
-    {% for p in posts %}
+    {% for post in posts %}
 				<div class="comments">
 
                     <!-- Comment -->
 					<div class="comment">
 
                         <div class="comm_hdr">
-                            <a href="{% url 'post_detail' pk=p.pk %}"><h3>{{ p.title }}</h3></a>
-							<p align="left">{{ p.text|truncatewords:3 }} <span> | {{ p.published_date }}</span></p>
+                            <a href="{% url 'post_detail' pk=post.pk %}"><h3>{{ post.title }}</h3></a>
+							<p align="left">{{ post.text|truncatewords:3 }} <span> | {{ post.published_date }}</span></p>
                              <br/>
 						</div>
 
                      <div class="post_inf">
                          <br/>
-                        <span class="pst">Комментариев: {{ p.comments.count }}</span><br/>
-                        <span class="posn">Автор: {{ p.author }}</span>
-                        <hr width="150" align="left" size="3" color="grey">
+                        <span class="pst">Комментариев: {{ post.comments.count }}</span><br/>
+                         {% if post.comments.count != 0 %}
+                            <span class="posn">Комментировал: {{ post.author.username }}</span>
+                            <hr width="150" align="left" size="3" color="grey">
+                         {% endif %}
                      </div>
 
                      <div class="post_photo">
-                        {% if p.img %}
+                        {% if post.img %}
                             <li class="center-block col-md-4 thumb">
-                            <a class="thumbnail" href="{{ p.img.url }}" target="_blank">перейти к фотографии</a>
-{#                            <a class="thumbnail" href="{{ p.img.url|watermark:"Logo,position=50%x7%,opacity=65,scale=2.5" }}" target="_blank">перейти к фотографии</a>#}
+                            <a class="thumbnail" href="{{ post.img.url }}" target="_blank">перейти к фотографии</a>
+{#                            <a class="thumbnail" href="{{ post.img.url|watermark:"Logo,position=50%x7%,opacity=65,scale=2.5" }}" target="_blank">перейти к фотографии</a>#}
                             </li>
                             <img class="img-responsive"
-                                    src="{% thumbnail p.img 400x170 crop %}" alt=""/>
+                                    src="{% thumbnail post.img 400x170 crop %}" alt=""/>
                         {% endif %}
                      <br/>
                      </div>
@@ -40,23 +42,8 @@
     {% endfor %}
 
     <!-- Pagination -->
-    <div class="pagination">
-        {% if posts.has_previous %}
-            <span class="prev"><a href="{% url "post_list" %}?page={{ posts.previous_page_number }}">назад</a></span>
-        {% endif %}
-
-
-       {% if posts.has_next %}
-            <a href="?page={{ posts.next_page_number }}">вперед</a>
-       {% endif %}
-
-        {% for pn in posts.paginator.page_range %}
-            <a href="{% url "post_list" %}?page={{ pn }}">{{ pn }}</a>
-        {% endfor %}
-    <br/>
-    <span class="current pagination">
-            стр. {{ posts.number }} из {{ posts.paginator.num_pages }}
-    </span>
-    </div>
+    {% block pagination %}
+        {% include "blog/pagination.html" with page=posts %}
+    {% endblock %}
 
 {% endblock %}
