@@ -18,7 +18,8 @@
 
                      <div class="post_inf">
                          <br/>
-                        <span class="pst">Комментариев: {{ post.comments.count }}</span><br/>
+
+                         <span class="pst">Комментариев: {{ post.comments.count }}</span><br/>
                          {% if post.comments.count != 0 %}
                             <span class="posn">Комментировал: {{ post.author.username }}</span>
                             <hr width="150" align="left" size="3" color="grey">
@@ -29,7 +30,7 @@
                         {% if post.img %}
                             <li class="center-block col-md-4 thumb">
                             <a class="thumbnail" href="{{ post.img.url }}" target="_blank">перейти к фотографии</a>
-{#                            <a class="thumbnail" href="{{ post.img.url|watermark:"Logo,position=50%x7%,opacity=65,scale=2.5" }}" target="_blank">перейти к фотографии</a>#}
+{#                                <a class="thumbnail" href="{{ post.img.url|watermark:"Logo,position=50%x7%,opacity=65,scale=2.5" }}" target="_blank">перейти к фотографии</a>#}
                             </li>
                             <img class="img-responsive"
                                     src="{% thumbnail post.img 400x170 crop %}" alt=""/>

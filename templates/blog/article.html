@@ -107,12 +107,14 @@
                         <a class="pop_posts" href="{% url "category" pk=category.pk %}"> {{ category.name|title }} </a>
                     {% endfor %}
 
-                <h3 align="center">Ключевые слова:</h3>
-                {% for tag in all_tags %}
-
-                    <a class="pop_posts" href="{% url "tag" pk=tag.pk %}"> {{ tag.name|lower }} </a>
-
-                {% endfor %}
+                <h3 class="tags">Tags: {{ post.tags.all|join:", " }}</h3>
+{#                <h3 align="center">#}
+{#                    {% if tag %}#}
+{#                <h3>Ключевые слова: "{{ tag.name }}"</h3>#}
+{#                    {% endif %}</h3>#}
+{#                {% for tag in tags %}#}
+{#                    <a class="pop_posts" href="{% url "tag" pk=tag.pk %}"> {{ tag.name|lower }} </a>#}
+{#                {% endfor %}#}
 
             </div>
 

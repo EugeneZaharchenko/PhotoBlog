@@ -2,7 +2,8 @@ from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
 from django.shortcuts import redirect
 from django.views.generic import ListView, TemplateView
-from . models import Post, Category, Tag
+from . models import Post, Category
+from taggit.models import Tag
 from . forms import PostForm, CommentForm, PostFormEdit
 #Подключаем пагинатор
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
@@ -33,28 +34,38 @@ def get_categories():
     return {'categories': all_categories, 'categories_count': count}
 
 
+# def get_tags():
+#     all_tags = Tag.objects.all()
+#     return {'tags': all_tags}
+
+
 class BaseView(TemplateView):
     template_name = 'blog/base.html'
 
-    def get(self, request):
+
+class PostListView(ListView):
+    template_name = 'blog/post_list.html'
+    context_object_name = 'posts'
+    paginate_by = 3
+
+    def get(self, request, tag_slug=None):
+        posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
         if request.user.is_authenticated:
-            all_categories = Category.objects.all()
-            count = all_categories.count()
             ctx = {}
+            tag = None
+
+            if tag_slug:
+                tag = get_object_or_404(Tag, slug=tag_slug)
+            queryset = posts.filter(tags__in=[tag])
+            tags = {'tag': tag}
+
             ctx.update(get_categories())
+            ctx.update(tags)
+
             return render(request, self.template_name, ctx)
         else:
             return render(request, self.template_name, {})
 
-# def base(request):
-#     return render(request, 'blog/base.html')
-
-
-class PostListView(ListView):
-    queryset = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
-    context_object_name = 'posts'
-    paginate_by = 2
-    template_name = 'blog/post_list.html'
 
 # def post_list(request):
 #     val = {}
@@ -74,19 +85,20 @@ class PostListView(ListView):
 #     return render(request, 'blog/post_list.html', context)
 
 
-def category(request, id=None):
-    posts = Post.objects.filter(category__id=id).order_by("-published_date")
+def category(request, pk=None):
+    posts = Post.objects.filter(category__id=pk).order_by("-published_date")
     context = {"posts": posts}
     context.update(get_categories())
     return render(request, "blog/post_list.html", context)
 
 
-def tag(request, id):
-    val = {}
-    val['all_tags'] = Tag.objects.all()
-    val['tags'] = Tag.objects.get(id=id)
-    val['all_post'] = Post.objects.filter(tag__name__icontains=val['tags'])
-    return render(request, "blog/post_list.html", val)
+# def tag(request, pk):
+#     val = dict()
+#     val['all_tags'] = Tag.objects.all()
+#     val['tags'] = Tag.objects.get(id=pk)
+#     # val['all_post'] = Post.objects.filter(tag__name__icontains=val['tags'])
+#     posts = Post.objects.filter(tag__name__icontains=val['tags'])
+#     return render(request, "blog/post_list.html", val)
 
 
 def search(request):
@@ -105,12 +117,12 @@ def search(request):
 
 
 def post_detail(request, pk):
-    val = {}
-    val['all_tags'] = Tag.objects.all()
+    # val = {}
+    # val['all_tags'] = Tag.objects.all()
     post = get_object_or_404(Post, pk=pk)
     context = {"post": post}
     context.update(get_categories())
-    context.update(val)
+    # context.update(val)
     return render(request, 'blog/post_detail.html', {'post': post})
 
 

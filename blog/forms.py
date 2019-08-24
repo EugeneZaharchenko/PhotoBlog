@@ -1,12 +1,13 @@
 from django import forms
-from .models import Post, Comment, Category, Tag
+from .models import Post, Comment, Category\
+    # , Tag
 
 
 class PostForm(forms.ModelForm):
 
     class Meta:
         model = Post
-        fields = ('title', 'text', 'category', 'tag', 'img')
+        fields = ('title', 'text', 'category', 'img')
         exclude = ('published_date', 'author')
 
 
@@ -25,11 +26,11 @@ class CategoryForm(forms.ModelForm):
         fields = ('name',)
 
 
-class TagForm(forms.ModelForm):
-
-    class Meta:
-        model = Tag
-        fields = ('name',)
+# class TagForm(forms.ModelForm):
+#
+#     class Meta:
+#         model = Tag
+#         fields = ('name',)
 
 
 class CommentForm(forms.ModelForm):

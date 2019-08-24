@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'django_countries',
     'gallery',
     'easy_thumbnails',
+    'taggit'
     # 'users'
     # 'watermarker',
 ]
@@ -140,3 +141,6 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'eugenezaharchenko@gmail.com'
 EMAIL_HOST_PASSWORD = 'J140180z'
+
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

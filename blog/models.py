@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from users.models import CustomUser
+from taggit.managers import TaggableManager
 
 
 class Category(models.Model):
@@ -14,18 +15,18 @@ class Category(models.Model):
         verbose_name_plural = "Категории"
 
 
-class Tag(models.Model):
-    name = models.CharField(max_length=50, verbose_name="Ключевые слова")
-
-    def __str__(self):
-        return self.name
-
-    def __unicode__(self):
-        return self.name
-
-    class Meta:
-        verbose_name = "Тэг"
-        verbose_name_plural = "Тэги"
+# class Tag(models.Model):
+#     name = models.CharField(max_length=50, verbose_name="Ключевые слова")
+#
+#     def __str__(self):
+#         return self.name
+#
+#     # def __unicode__(self):
+#     #     return self.name
+#
+#     class Meta:
+#         verbose_name = "Тэг"
+#         verbose_name_plural = "Тэги"
 
 
 class Post(models.Model):
@@ -39,7 +40,8 @@ class Post(models.Model):
         blank=True, null=True)
     category = models.ForeignKey(Category, default=None, verbose_name="Категория", on_delete=models.CASCADE)
     img = models.ImageField(blank=True, upload_to="posts", verbose_name="Картинка", default=None)
-    tag = models.ManyToManyField(Tag, verbose_name="Тег")
+    tags = TaggableManager()
+    # tag = models.ManyToManyField(Tag, verbose_name="Тег")
 
     def publish(self):
         self.published_date = timezone.now()
