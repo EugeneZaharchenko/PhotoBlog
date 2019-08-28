@@ -1,15 +1,14 @@
 <div class="pagination">
         {% if posts.has_previous %}
-            <span class="prev"><a href="{% url "post_list" %}?page={{ posts.previous_page_number }}">назад</a></span>
+            <span class="prev"><a href="{% url "posts_list" %}?page={{ posts.previous_page_number }}">назад</a></span>
         {% endif %}
-
 
        {% if posts.has_next %}
             <a href="?page={{ posts.next_page_number }}">вперед</a>
        {% endif %}
 
         {% for pn in posts.paginator.page_range %}
-            <a href="{% url "post_list" %}?page={{ pn }}">{{ pn }}</a>
+            <a href="{% url "posts_list" %}?page={{ pn }}">{{ pn }}</a>
         {% endfor %}
     <br/>
     <span class="current pagination">

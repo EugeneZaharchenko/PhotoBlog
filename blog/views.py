@@ -1,11 +1,11 @@
 from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
 from django.shortcuts import redirect
-from django.views.generic import ListView, TemplateView
+from django.views.generic import TemplateView, ListView, DetailView
 from . models import Post, Category
 from taggit.models import Tag
 from . forms import PostForm, CommentForm, PostFormEdit
-#Подключаем пагинатор
+# #Подключаем пагинатор
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
@@ -43,31 +43,54 @@ class BaseView(TemplateView):
     template_name = 'blog/base.html'
 
 
-class PostListView(ListView):
-    template_name = 'blog/post_list.html'
-    context_object_name = 'posts'
-    paginate_by = 3
+# class PostListView(ListView):
+#     template_name = 'blog/post_list.html'
+#     model = Post
+#     context_object_name = 'posts'
+#     paginate_by = 2
+#
+#     def get(self, request, tag_slug=None):
+#         posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
+#         if request.user.is_authenticated:
+#             ctx = {"posts": posts}
+#             tag = None
+#
+#             if tag_slug:
+#                 tag = get_object_or_404(Tag, slug=tag_slug)
+#             queryset = posts.filter(tags__in=[tag])
+#             tags = {'tag': tag}
+#
+#             ctx.update(get_categories())
+#             ctx.update(tags)
+#
+#             return render(request, self.template_name, ctx)
+#         else:
+#             return render(request, self.template_name, {})
 
-    def get(self, request, tag_slug=None):
-        posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
-        if request.user.is_authenticated:
-            ctx = {}
-            tag = None
 
-            if tag_slug:
-                tag = get_object_or_404(Tag, slug=tag_slug)
-            queryset = posts.filter(tags__in=[tag])
-            tags = {'tag': tag}
+def post_list(request):
+    posts = Post.objects.all()
+    tag = None
 
-            ctx.update(get_categories())
-            ctx.update(tags)
+    # if tag_slug:
+    #     tag = get_object_or_404(Tag, slug=tag_slug)
+    # posts_list = posts.filter(tags__in=[tag])
 
-            return render(request, self.template_name, ctx)
-        else:
-            return render(request, self.template_name, {})
+    page = request.GET.get('page', 1)
+    paginator = Paginator(posts, 3)  # 3 posts in each page
 
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
 
-# def post_list(request):
+    context = {'page': page,
+               'posts': posts,
+               'tag': tag}
+    context.update(get_categories())
+    return render(request, 'blog/post_list.html', context)
 #     val = {}
 #     val['all_tags'] = Tag.objects.all()
 #     all_post = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
@@ -86,13 +109,15 @@ class PostListView(ListView):
 
 
 def category(request, pk=None):
-    posts = Post.objects.filter(category__id=pk).order_by("-published_date")
+    posts = Post.objects.filter(category__id=pk).order_by('-published_date')
     context = {"posts": posts}
     context.update(get_categories())
     return render(request, "blog/post_list.html", context)
 
 
-# def tag(request, pk):
+# def tag(request, tag_slug=None):
+#
+#
 #     val = dict()
 #     val['all_tags'] = Tag.objects.all()
 #     val['tags'] = Tag.objects.get(id=pk)
@@ -123,7 +148,7 @@ def post_detail(request, pk):
     context = {"post": post}
     context.update(get_categories())
     # context.update(val)
-    return render(request, 'blog/post_detail.html', {'post': post})
+    return render(request, 'blog/post_detail.html', context)
 
 
 @login_required
@@ -181,4 +206,4 @@ def add_comment_to_post(request, pk):
 def post_remove(request, pk):
     post = get_object_or_404(Post, pk=pk)
     post.delete()
-    return redirect('post_list')
+    return redirect('posts_list')

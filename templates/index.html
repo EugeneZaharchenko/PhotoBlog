@@ -43,7 +43,7 @@
         <!-- Top Menu -->
         <div id="hdl">
             <a href="{% url 'base' %}">Главная</a>
-            <a href="{% url 'post_list' %}" class="hl">Блог</a>
+            <a href="{% url 'posts_list' %}" class="hl">Блог</a>
             <a href="{% url 'gallery' %}" class="hl">Галерея</a>
             {% if user.is_authenticated %}
                 <a href="{% url 'logout' %}">{{ user.username }}, покинуть сайт?</a>
@@ -66,7 +66,7 @@
         <!-- Main Menu -->
         <div id="menu">
             <a class="mh" href="{% url 'base' %}">Главная</a>
-            <a class="mt" href="{% url 'post_list' %}">Блог</a>
+            <a class="mt" href="{% url 'posts_list' %}">Блог</a>
             <a class="mw" href="{% url 'gallery' %}">Галерея</a>
             {% if user.is_authenticated %}
                 <a class="mi" href="{% url 'logout' %}">Выйти</a>
@@ -120,7 +120,7 @@
         <div id="foo_menu">
 
             <a href="{% url 'base' %}">Главная</a><span>.</span>
-            <a href="{% url 'post_list' %}">Блог</a><span>.</span>
+            <a href="{% url 'posts_list' %}">Блог</a><span>.</span>
             <a href="{% url 'gallery' %}">Галерея</a><span>.</span>
             <a href="#">Контактная информация</a>
 
