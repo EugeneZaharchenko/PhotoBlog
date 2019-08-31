@@ -31,7 +31,6 @@ class Category(models.Model):
 
 class Post(models.Model):
     author = models.ForeignKey('users.CustomUser', on_delete=models.CASCADE)
-    # author = models.ForeignKey('auth.User', on_delete=None)
     title = models.CharField(max_length=100, unique=True, verbose_name="Заголовок")
     text = models.TextField(verbose_name="Текст")
     created_date = models.DateTimeField(
