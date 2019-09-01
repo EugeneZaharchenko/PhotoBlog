@@ -3,7 +3,7 @@ from django.utils import timezone
 from django.shortcuts import redirect
 from django.views.generic import TemplateView, ListView, DetailView
 from . models import Post, Category
-from taggit.models import Tag
+# from taggit.models import Tag
 from . forms import PostForm, CommentForm, PostFormEdit
 # #Подключаем пагинатор
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
@@ -11,9 +11,9 @@ from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 
 
-# from PIL import Image, ImageDraw, ImageFont
-#
-#
+from PIL import Image, ImageDraw, ImageFont
+
+
 # _default_font = ImageFont.truetype('/usr/share/fonts/dejavu/DejaVuSans-Bold.ttf', 24)
 #
 #
@@ -27,6 +27,7 @@ from django.core.mail import send_mail
 #     image_with_text_overlay = Image.alpha_composite(rgba_image, text_overlay)
 #
 #     return image_with_text_overlay
+
 
 def get_categories():
     all_categories = Category.objects.all()

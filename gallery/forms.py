@@ -1,5 +1,6 @@
 from django.forms import ModelForm
-from .models import Photo, Strana
+from .models import Photo\
+    # , Strana
 from django_countries.widgets import CountrySelectWidget
 
 
@@ -11,8 +12,8 @@ class PhotoForm(ModelForm):
         widgets = {'country': CountrySelectWidget()}
 
 
-class CountryForm(ModelForm):
-
-    class Meta:
-        model = Strana
-        fields = ('COUNTRY',)
+# class CountryForm(ModelForm):
+#
+#     class Meta:
+#         model = Strana
+#         fields = ('COUNTRY',)

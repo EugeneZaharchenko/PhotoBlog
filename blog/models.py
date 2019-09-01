@@ -15,20 +15,6 @@ class Category(models.Model):
         verbose_name_plural = "Категории"
 
 
-# class Tag(models.Model):
-#     name = models.CharField(max_length=50, verbose_name="Ключевые слова")
-#
-#     def __str__(self):
-#         return self.name
-#
-#     # def __unicode__(self):
-#     #     return self.name
-#
-#     class Meta:
-#         verbose_name = "Тэг"
-#         verbose_name_plural = "Тэги"
-
-
 class Post(models.Model):
     author = models.ForeignKey('users.CustomUser', on_delete=models.CASCADE)
     title = models.CharField(max_length=100, unique=True, verbose_name="Заголовок")
@@ -39,7 +25,7 @@ class Post(models.Model):
         blank=True, null=True)
     category = models.ForeignKey(Category, default=None, verbose_name="Категория", on_delete=models.CASCADE)
     img = models.ImageField(blank=True, upload_to="posts", verbose_name="Картинка", default=None)
-    tags = TaggableManager()
+    # tags = TaggableManager()
     # tag = models.ManyToManyField(Tag, verbose_name="Тег")
 
     def publish(self):

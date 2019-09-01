@@ -28,12 +28,12 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'blog',
     'crispy_forms',
-    'django_countries',
+    # 'django_countries',
     'gallery',
     'easy_thumbnails',
-    'taggit'
+    'taggit',
     # 'users'
-    # 'watermarker',
+    'watermarker'
 ]
 AUTH_USER_MODEL = 'users.CustomUser'
 
