@@ -41,7 +41,8 @@ def get_categories():
 
 
 class BaseView(TemplateView):
-    template_name = 'blog/base.html'
+    template_name = 'blog/index.html'
+    # template_name = 'blog/base.html'
 
 
 # class PostListView(ListView):

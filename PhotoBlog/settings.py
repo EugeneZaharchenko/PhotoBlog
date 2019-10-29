@@ -33,7 +33,7 @@ INSTALLED_APPS = [
     'easy_thumbnails',
     'taggit',
     # 'users'
-    'watermarker'
+    # 'watermarker'
 ]
 AUTH_USER_MODEL = 'users.CustomUser'
 
