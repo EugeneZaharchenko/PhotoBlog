@@ -209,3 +209,7 @@ def post_remove(request, pk):
     post = get_object_or_404(Post, pk=pk)
     post.delete()
     return redirect('posts_list')
+
+
+def contacts(request):
+    return render(request, 'blog/contact.html')

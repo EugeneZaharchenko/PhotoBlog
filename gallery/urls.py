@@ -1,12 +1,12 @@
-"""PhotoBlog URL Configuration
+"""PhotoBlog Gallery URL Configuration
 """
-from django.conf.urls import url
-from .views import gallery, upload\
-    # , country
+from django.urls import path
+from blog.views import BaseView
+from .views import GalleryView, upload
+
 
 urlpatterns = [
-    url(r'^$', gallery, name="gallery"),
-    url(r'^upload/$', upload, name="upload"),
-    # url(r'country/(?P<id>\d+)/$', country, name="country"),
+    path('', GalleryView.as_view(), name="gallery"),
+    # url(r'^upload/$', upload, name="upload"),
     # url(r'^certain_photo/$', certain_photo, name="certain_photo"),
 ]

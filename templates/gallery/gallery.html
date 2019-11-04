@@ -1,37 +1,78 @@
-{% extends 'blog/index.html' %}
-{% load static %}
+{#{% extends 'blog/index.html' %}#}
+{% load staticfiles %}
+{% include 'blog/head.html' %}
+{% include 'blog/header.html' %}
 {% load thumbnail %}
 {#{% load watermark %}#}
-{% block header %}
-    <link rel="stylesheet" href="{% static "gallery/css/style.css" %}">
-{% endblock %}
-{% block photo %}
-    <ul class="row">
-        <!-- Blog Entries Column -->
+    <title>
+        {% block title %}Gallery{% endblock %}
+    </title>
 
-        {% for img in photos %}
-            <li class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="{{ img.image.url }}" target="_blank">
-                    <img class="img-responsive"
-                         data-src="{{ img.image.url }}"
-                         src="{% thumbnail img.image 200x150 %}"
-                         alt="{{ img.description }}"
-                         title="{{ img.description }}"/>
-                </a>
-            </li>
-        {% endfor %}
+{#{% block old_photo %}#}
+{#    <ul class="row">#}
+{#        <!-- Blog Entries Column -->#}
+{##}
+{#        {% for img in photos %}#}
+{#            <li class="col-lg-3 col-md-4 col-xs-6 thumb">#}
+{#                <a class="thumbnail" href="{{ img.image.url }}" target="_blank">#}
+{#                    <img class="img-responsive"#}
+{#                         data-src="{{ img.image.url }}"#}
+{#                         src="{% thumbnail img.image 200x150 %}"#}
+{#                         alt="{{ img.description }}"#}
+{#                         title="{{ img.description }}"/>#}
+{#                </a>#}
+{#            </li>#}
+{#        {% endfor %}#}
+{##}
+{#        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"#}
+{#             aria-hidden="true">#}
+{#            <div class="modal-dialog">#}
+{#                <div class="modal-content">#}
+{#                    <div class="modal-body">#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{##}
+{#    </ul>#}
+{##}
+{#    <a class="btn btn-success btn-block" href="{% url 'upload' %}">Добавить фото</a>#}
+{#{% endblock %}#}
 
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-body">
+{% block gallery %}
+    <div class="photo_gallery">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="section_title mb-33">
+                        <h3>Photo Gallery</h3>
+                    </div>
+                </div>
+                <div class="col-xl-12">
+                    <div class="photo_gallery_active owl-carousel">
+                        <div class="single_photo_gallery gallery_bg_1">
+                            <div class="photo_caption">
+                                <h3>Travel Camping</h3>
+                            </div>
+                        </div>
+                        <div class="single_photo_gallery gallery_bg_2">
+                            <div class="photo_caption">
+                                <h3>Travel Camping</h3>
+                            </div>
+                        </div>
+                        <div class="single_photo_gallery gallery_bg_1">
+                            <div class="photo_caption">
+                                <h3>Travel Camping</h3>
+                            </div>
+                        </div>
+                        <div class="single_photo_gallery gallery_bg_2">
+                            <div class="photo_caption">
+                                <h3>Travel Camping</h3>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
-    </ul>
-
-    <a class="btn btn-success btn-block" href="{% url 'upload' %}">Добавить фото</a>
+    </div>
 {% endblock %}

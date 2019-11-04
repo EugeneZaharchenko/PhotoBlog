@@ -11,7 +11,7 @@ urlpatterns = [
     path('post/category/<int:pk>/', views.category, name='category'),
     path('tag/<slug:tag_slug>/', views.post_list, name='post_list_by_tag'),
     path('post/search/', views.search, name='search'),
-    path('posts/', views.post_list, name='posts_list'),
-    # path('posts/', views.PostListView.as_view(), name='post_list'),
-    path('gallery/', include('gallery.urls'))
+    path('', views.post_list, name='blog'),
+    # path('posts/', views.post_list, name='posts_list'),
+    # path('posts/', views.PostListView.as_view(), name='post_list')
 ]
