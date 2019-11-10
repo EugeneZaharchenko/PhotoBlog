@@ -3,31 +3,31 @@
 {% load staticfiles %}
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta content="true" name="mssmarttagspreventparsing" />
-        <script type="text/javascript" src="{% static 'js/jquery-3.1.1.js' %}"></script>
-        <link href="{% static 'blog/images/favicon.ico' %}" rel="icon" type="image/ico" />
-        <title>ФОТОблог</title>
-        <link href="{% static 'blog/css/style.css' %}" rel="stylesheet" type="text/css" />
-
-        <!-- IE fixes -->
-        <!--[if IE 7]>
-        <style type="text/css">
-                #logo {top:50px;}
-                #menu {margin:50px 0 0 500px;}
-        </style>
-        <![endif]-->
-        <!--[if lte IE 6]>
-        <style type="text/css">
-                #hdl {margin:0px 0 0 250px;}
-                #logo {top:50px;}
-                #menu {margin:50px 0 0 500px;}
-        </style>
-        <script src="js/DD_belatedPNG_0.0.7a-min.js" type="text/javascript"></script>
-        <![endif]-->
-
-</head>
+{#<head>#}
+{#        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />#}
+{#        <meta content="true" name="mssmarttagspreventparsing" />#}
+{#        <script type="text/javascript" src="{% static 'js/jquery-3.1.1.js' %}"></script>#}
+{#        <link href="{% static 'blog/images/favicon.ico' %}" rel="icon" type="image/ico" />#}
+{#        <title>ФОТОблог</title>#}
+{#        <link href="{% static 'blog/css/style.css' %}" rel="stylesheet" type="text/css" />#}
+{##}
+{#        <!-- IE fixes -->#}
+{#        <!--[if IE 7]>#}
+{#        <style type="text/css">#}
+{#                #logo {top:50px;}#}
+{#                #menu {margin:50px 0 0 500px;}#}
+{#        </style>#}
+{#        <![endif]-->#}
+{#        <!--[if lte IE 6]>#}
+{#        <style type="text/css">#}
+{#                #hdl {margin:0px 0 0 250px;}#}
+{#                #logo {top:50px;}#}
+{#                #menu {margin:50px 0 0 500px;}#}
+{#        </style>#}
+{#        <script src="js/DD_belatedPNG_0.0.7a-min.js" type="text/javascript"></script>#}
+{#        <![endif]-->#}
+{##}
+{#</head>#}
 
 <body>
 	<!-- Wrap Div -->
@@ -38,8 +38,8 @@
 
 			<!-- Top Menu -->
 			<div id="hdl">
-				<a href="{% url 'base' %}">Главная</a>
-				<a href="{% url 'posts_list' %}" class="hl">Блог</a>
+				<a href="{% url 'home' %}">Главная</a>
+{#				<a href="{% url 'posts_list' %}" class="hl">Блог</a>#}
                 <a href="{% url 'gallery' %}" class="hl">Галерея</a>
 				{% if user.is_authenticated %}
                     <a href="{% url 'logout' %}">Уйти по-английски, {{ user.username }}?</a>
@@ -55,15 +55,15 @@
 				<input class="btn btn-default" type="submit"  value="" id="searchsubmit" />
 			</form>
 
-			<div id="logo">
-				<a href="{% url 'posts_list' %}"></a>
-			</div>
+{#			<div id="logo">#}
+{#				<a href="{% url 'posts_list' %}"></a>#}
+{#			</div>#}
 
 			<!-- Main Menu -->
 			<div id="menu">
-				<a class="mh" href="{% url 'base' %}">Главная</a>
-				<a class="mt" href="{% url 'posts_list' %}">Блог</a>
-				<a class="mw" href="{% url 'gallery' %}">Галерея</a>
+{#				<a class="mh" href="{% url 'base' %}">Главная</a>#}
+{#				<a class="mt" href="{% url 'posts_list' %}">Блог</a>#}
+{#				<a class="mw" href="{% url 'gallery' %}">Галерея</a>#}
                 {% if user.is_authenticated %}
                     <a class="mi" href="{% url 'logout' %}">Выйти</a>
                 {% else%}
@@ -158,8 +158,8 @@
 			<!-- Footer Menu -->
 			<div id="foo_menu">
 
-				<a href="{% url 'base' %}">Главная</a>
-				<a href="{% url 'posts_list' %}">Блог</a>
+{#				<a href="{% url 'base' %}">Главная</a>#}
+{#				<a href="{% url 'posts_list' %}">Блог</a>#}
 				<a href="{% url 'gallery' %}">Галерея</a>
 				<a href="https://vk.com/id107407517">Заходите в гости</a>
 				<a href="mailto:romanuks@ukr.net">Напишите мне</a>

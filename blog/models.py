@@ -5,7 +5,7 @@ from taggit.managers import TaggableManager
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=100, verbose_name="Название", unique=True, blank=False)
+    name = models.CharField(max_length=100, verbose_name="Название категории", unique=True, blank=False)
 
     def __str__(self):
         return self.name
@@ -16,13 +16,13 @@ class Category(models.Model):
 
 
 class Post(models.Model):
-    author = models.ForeignKey('users.CustomUser', on_delete=models.CASCADE)
+    author = models.ForeignKey('users.CustomUser', on_delete=models.CASCADE, verbose_name="Автор")
     title = models.CharField(max_length=100, unique=True, verbose_name="Заголовок")
     text = models.TextField(verbose_name="Текст")
     created_date = models.DateTimeField(
-        default=timezone.now)
+        default=timezone.now, verbose_name="Дата создания")
     published_date = models.DateTimeField(
-        blank=True, null=True)
+        blank=True, null=True, verbose_name="Дата публикации")
     category = models.ForeignKey(Category, default=None, verbose_name="Категория", on_delete=models.CASCADE)
     img = models.ImageField(blank=True, upload_to="posts", verbose_name="Картинка", default=None)
     # tags = TaggableManager()
@@ -41,15 +41,12 @@ class Post(models.Model):
 
 
 class Comment(models.Model):
-    GENDER_CHOICES = (('male', 'Мужчина'), ('female', 'Женщина'), ('other', '...'))
-
-    post = models.ForeignKey('blog.Post', related_name='comments', on_delete=models.CASCADE)
-    author = models.CharField(max_length=200)
-    gender = models.CharField(max_length=9, choices=GENDER_CHOICES, default='it')
-    text = models.TextField()
-    mail = models.EmailField(null=False, default=None)
-    created_date = models.DateTimeField(default=timezone.now)
-    approved_comment = models.BooleanField(default=False)
+    post = models.ForeignKey('blog.Post', related_name='comments', on_delete=models.CASCADE, verbose_name="Пост")
+    author = models.CharField(max_length=200, verbose_name="Комментатор")
+    text = models.TextField(verbose_name="Текст")
+    mail = models.EmailField(null=False, default=None, verbose_name="Электронный адрес")
+    created_date = models.DateTimeField(default=timezone.now, verbose_name="Дата комметария")
+    approved_comment = models.BooleanField(default=False, verbose_name="Одобрен")
 
     def approve(self):
         self.approved_comment = True

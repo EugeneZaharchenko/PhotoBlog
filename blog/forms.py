@@ -37,7 +37,7 @@ class CommentForm(forms.ModelForm):
 
     class Meta:
         model = Comment
-        fields = ('author', 'text',  'created_date', 'mail', 'gender')
+        fields = ('author', 'text',  'created_date', 'mail')
 
 
 class EmailPostForm(forms.Form):
