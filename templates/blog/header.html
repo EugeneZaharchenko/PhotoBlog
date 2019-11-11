@@ -22,7 +22,11 @@
                         </div>
                         <div class="col-xl-4 col-md-4 d-none d-md-block">
                             <div class="login_resiter">
-                                <p><a href="{% url 'login' %}"><i class="flaticon-user"></i>login</a> | <a href="{% url 'signup' %}">Register</a></p>
+                                {% if user.is_authenticated %}
+                                    <p class="user">Welcome {{ user.username }} !!! | <a href="{% url 'logout' %}">Leave</a>
+                                {% else %}
+                                    <p><a href="{% url 'login' %}"><i class="flaticon-user"></i>login</a> | <a href="{% url 'signup' %}">Register</a></p>
+                                {% endif %}
                             </div>
                         </div>
                     </div>

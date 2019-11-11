@@ -1,49 +1,23 @@
-{#{% extends 'blog/base.html' %}#}
-{#{% load crispy_forms_tags %}#}
-{#    {% block content %}#}
-{#        <form action="{% url 'login' %}" method="POST">#}
-{#            {% csrf_token %}#}
-{#            {{ form.as_table }}#}
-{#            {% for field in form %}#}
-{#              <label for="">{{field.label}}</label>#}
-{#              <div>{{field}}</div>#}
-{#              {% if field.errors %}#}
-{#               <p>{{field.errors}}</p>#}
-{#              {% endif %}#}
-{#            {% endfor %}#}
-{#            <input type="hidden" name="next" value="{{ next }}" />#}
-{#            <input type="submit" class="btn btn-default" value="Вход" />#}
-{#        </form>#}
-{#    {% endblock %}#}
-
 {% extends 'blog/index.html' %}
 {% load staticfiles %}
 {% load crispy_forms_tags %}
     {% block content %}
-        <div class="wrapper fadeInDown">
-  <div id="formContent">
-    <!-- Tabs Titles -->
-
-    <!-- Icon -->
-    <div class="fadeIn first">
-{#      <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" />#}
+    <div class="wrapper fadeInDown">
+      <div id="formContent">
+            <form action="{% url 'login' %}" method="POST">
+                {% csrf_token %}
+                {% for field in form %}
+                  <label for="">{{field.label}}</label>
+                  <div>{{field}}</div>
+                  {% if field.errors %}
+                   <p>{{field.errors}}</p>
+                  {% endif %}
+                {% endfor %}
+                <input type="hidden" name="next" value="{{ next }}" />
+                <input type="submit" class="btn btn-default" value="Вход" />
+            </form>
+      </div>
     </div>
-
-    <!-- Login Form -->
-    <form action="{% url 'login' %}" method="POST">
-        {% csrf_token %}
-      <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
-      <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
-      <input type="hidden" name="next" value="{{ next }}" />
-      <input type="submit" class="fadeIn fourth" value="Sign up">
-    </form>
-
-    <div id="formFooter">
-      <a class="underlineHover" href="#">Forgot Password?</a>
-    </div>
-
-  </div>
-</div>
     {% endblock %}
 
     {% block proto %}{% endblock %}

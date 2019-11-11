@@ -110,6 +110,12 @@ p {
   font-family: 'Roboto', sans-serif;
 }
 
+p.user {
+  font-size: 23px;
+  font-weight: 500;
+  color: #000;
+}
+
 /* line 71, ../../Arafath/CL/CL August/204. Blog/204. Blog- HTML/scss/theme-default.scss */
 label {
   color: #7e7e7e;
@@ -653,6 +659,11 @@ h3 {
 /* line 51, ../../Arafath/CL/CL August/204. Blog/204. Blog- HTML/scss/_header.scss */
 .header-area .header_top .login_resiter {
   text-align: right;
+}
+
+header-area .header_top .login_resiter > p.user {
+  font-size: 23px; !important;
+  font-weight: 500; !important;
 }
 
 /* line 53, ../../Arafath/CL/CL August/204. Blog/204. Blog- HTML/scss/_header.scss */

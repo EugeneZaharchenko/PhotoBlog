@@ -26,7 +26,7 @@ class LoginFormView(FormView):
 
     template_name = "login.html"
 
-    success_url = "base"
+    success_url = "home"
 
     def form_valid(self, form):
         self.user = form.get_user()
@@ -39,4 +39,4 @@ class LoginFormView(FormView):
 @login_required
 def logout_view(request):
     logout(request)
-    return redirect('base')
+    return redirect('home')
