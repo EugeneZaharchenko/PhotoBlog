@@ -25,7 +25,7 @@ class Photo(models.Model):
     # label = "Photo",
     description = models.CharField(max_length=255, null=True)
     # category = models.ForeignKey(Category)
-    country = models.ForeignKey(Strana, default=None, on_delete=None)
+    country = models.ForeignKey(Strana, default=None, on_delete=models.CASCADE)
     # post = models.OneToOneField('blog.Post', default=None, unique=True, primary_key=True)
 
     def __str__(self):
