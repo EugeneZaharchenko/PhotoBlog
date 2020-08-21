@@ -1,10 +1,11 @@
 from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
 from django.shortcuts import redirect
-from django.views.generic import ListView
+from django.views.generic import ListView, TemplateView
 from . models import Post, Category, Tag
 from . forms import PostForm, CommentForm, PostFormEdit
-#Подключаем пагинатор
+
+#Pagination
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
@@ -27,12 +28,12 @@ from django.core.mail import send_mail
 #
 #     return image_with_text_overlay
 
-def base(request):
-    return render(request, 'blog/base.html')
+class HomePageView(TemplateView):
+    template_name = 'index.html'
 
 
-def me(request):
-    return render(request, 'blog/me.html')
+class AboutView(TemplateView):
+    template_name = 'about.html'
 
 
 class PostListView(ListView):

@@ -1,138 +1,145 @@
-{% load i18n %}
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 {% load static %}
-{% load countries %}
 
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta content="true" name="mssmarttagspreventparsing" />
+<html>
+	<head>
+		<title>ФОТОБЛОГ Марины</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="{% static 'css/main.css' %}" />
+	</head>
+	<body>
+		<div class="page-wrap">
 
-        <title>ФОТОблог</title>
-        <link href="{% static 'blog/css/style.css' %}" rel="stylesheet" type="text/css" />
+			<!-- Nav -->
+				<nav id="nav">
+					<ul>
+						<li><a href="{% url 'base' %}" class="active"><span class="icon fa-home"></span></a></li>
+						<li><a href="{% url 'gallery' %}"><span class="icon fa-camera-retro"></span></a></li>
+						<li><a href="{% url 'post_list' %}"><span class="icon fa-file-text-o"></span></a></li>
+						<li><a href="{% url 'about' %}"><span class="icon fa-user"></span></a></li>
+					</ul>
+				</nav>
 
-        <!-- IE fixes -->
-        <!--[if IE 7]>
-        <style type="text/css">
-                #logo {top:50px;}
-                #menu {margin:50px 0 0 500px;}
-        </style>
-        <![endif]-->
-        <!--[if lte IE 6]>
-        <style type="text/css">
-                #hdl {margin:0px 0 0 250px;}
-                #logo {top:50px;}
-                #menu {margin:50px 0 0 500px;}
-        </style>
-        <script src="js/DD_belatedPNG_0.0.7a-min.js" type="text/javascript"></script>
-        <script type="text/javascript">
-                DD_belatedPNG.fix('#logo, .mh, .mw, .mt, .mi, .rss_twitt, .rss, #TwitterCounter, .avatar_frame, .pop_posts');
-        </script>
-        <![endif]-->
+			<!-- Main -->
+				<section id="main">
 
-</head>
+					<!-- Banner -->
+						<section id="banner">
+							<div class="inner">
+								<h1>Привет. Я - Марина</h1>
+								<p>И я рада, что вы посетили мой  <a href="https://templated.co">ФОТОБЛОГ</a></p>
+								<ul class="actions">
+									<li><a href="#galleries" class="button alt scrolly big">Продолжить</a></li>
+								</ul>
+							</div>
+						</section>
 
-<body>
-	<!-- Wrap Div -->
-	<div id="wrap">
+					<!-- Gallery -->
+						<section id="galleries">
 
-		<!-- Header -->
-		<div id="hdr">
+							<!-- Photo Galleries -->
+								<div class="gallery">
+									<header class="special">
+										<h2>Новинки</h2>
+									</header>
+									<div class="content">
+										<div class="media">
+											<a href="{% static 'images/fulls/01.jpg'%}"><img src="{% static 'images/thumbs/01.jpg' %}" alt="" title="This right here is a caption." /></a>
+										</div>
+										<div class="media">
+											<a href="{% static 'images/fulls/05.jpg'%}"><img src="{% static 'images/thumbs/05.jpg' %}" alt="" title="This right here is a caption." /></a>
+										</div>
+										<div class="media">
+											<a href="{% static 'images/fulls/09.jpg'%}"><img src="{% static 'images/thumbs/09.jpg' %}" alt="" title="This right here is a caption." /></a>
+										</div>
+										<div class="media">
+											<a href="{% static 'images/fulls/02.jpg'%}"><img src="{% static 'images/thumbs/02.jpg' %}" alt="" title="This right here is a caption." /></a>
+										</div>
+										<div class="media">
+											<a href="{% static 'images/fulls/06.jpg'%}"><img src="{% static 'images/thumbs/06.jpg' %}" alt="" title="This right here is a caption." /></a>
+										</div>
+										<div class="media">
+											<a href="{% static 'images/fulls/10.jpg'%}"><img src="{% static 'images/thumbs/10.jpg' %}" alt="" title="This right here is a caption." /></a>
+										</div>
+										<div class="media">
+											<a href="{% static 'images/fulls/03.jpg'%}"><img src="{% static 'images/thumbs/03.jpg' %}" alt="" title="This right here is a caption." /></a>
+										</div>
+										<div class="media">
+											<a href="{% static 'images/fulls/07.jpg'%}"><img src="{% static 'images/thumbs/07.jpg' %}" alt="" title="This right here is a caption." /></a>
+										</div>
+									</div>
+									<footer>
+										<a href="{% url 'gallery' %}" class="button big">Галерея фотографий</a>
+									</footer>
+								</div>
+						</section>
 
-			<!-- Top Menu -->
-			<div id="hdl">
-				<a href="{% url 'base' %}">Главная</a>
-				<a href="{% url 'post_list' %}" class="hl">Блог</a>
-{#                <a href="{% url 'gallery' %}" class="hl">Галерея</a>#}
-				{% if user.is_authenticated %}
-                    <a href="{% url 'logout' %}">Уйти по-английски, {{ user }}?</a>
-                {% else%}
-                    <a href="{% url 'login' %}" class="hl">Войти</a>
-                {% endif %}
-			</div>
+                        {% block login %}{% endblock %}
 
-{#			<!-- Search form -->#}
-{#			<form id="search_form" method="post" action="{% url 'search' %}">#}
-{#                 {% csrf_token %}#}
-{#				<input class="search_field" type="search" value="?" onfocus="clS(1);" onblur="clS(0);"  name="query" id="s" />#}
-{#				<input class="search_button" type="submit"  value="" id="searchsubmit" />#}
-{#			</form>#}
+					<!-- Contact -->
+						<section id="contact">
+							<!-- Social -->
+								<div class="social column">
+									<h3>Обо мне</h3>
+									<p>Моя родина – Днепродзержинск, украинский Дрезден.. Мне повезло стать филологом, переводчиком и преподавателем. Я снимаю лет 15, и даже сейчас всё ещё на пленку. Всегда старалась снимать ответственно, да и светлые люди настойчиво доносили мысль о терпении и выдержке. А сейчас и еще и рынок так жестко диктует( Ошибки и случайности теперь дорого стоят. Безусловно, непредвиденное случается, но оно каким-то чудесным образом помогает.. высказаться, что ли.</p>
+                                    <p>У меня ФЭД, дальномерный друг с крохотным видоискателем…</p>
+									Я в основном снимаю на цветную пленку – Kodak, Fujicolor, в поездки иногда беру слайд Agfa Precisa. Со слайдом история другая – привлекает ретро after-party с проектором)</p>
+                                    <p>Я люблю и ч/б, за свет и тени, за подчеркивание главного и отметание лишнего, за машину времени. Пару раз попалась свежая Свема, добрые люди помогли … с химией в быту</p>
+                                    <p>Меня вдохновляют фотографировать, как ни странно, как раз неснятые, пропущенные или «проеханные» в автобусе события, на которые ты опоздал на минуту, или засомневался = не дождался нужного теплого вечернего света, а потом так и не смог прийти в пункт А, не было с тобой твоей камеры и т.д.</p>
+                                    <p>Вдохновляют города и то, что они готовы тебе открыть. Мне интересно узнавать, что делает города особенными.</p>
+                                    <p>Наверное, не так уж и важно, нажал ты на кнопку или нет, ты все равно увозишь с собой эту историю … я увезла из одного морского города две «проеханные» истории : например, история номер один приключилась в темном арочном переулке, занавешенном оранжевыми строительными тканями. В них бушевал ветер и приоткрывал лазурные волны с барашками.  На лесах неторопливо курил рабочий…</p>
+                                    <p>Или другая история ... о том, как надо любить свой город … На булыжной мостовой рабочие латали узор из темных сердечек на светлом фоне, вколачивали маленькими молоточками выпавшие камни. А не загоняли в асфальт!</p>
+                                    <p>Вдохновляет уединение и местные языки, так становишься более внимательным.</p>
+									<h3>Follow Me</h3>
+									<ul class="icons">
+										<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+										<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+										<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+									</ul>
+								</div>
 
-			<div id="logo">
-				<a href="{% url 'base' %}"></a>
-			</div>
+							<!-- Form -->
+								<div class="column">
+									<h3>Поделитесь со мной впечатлениями</h3>
+									<form action="#" method="post">
+										<div class="field half first">
+											<label for="name">Имя</label>
+											<input name="name" id="name" type="text" placeholder="Имя">
+										</div>
+										<div class="field half">
+											<label for="email">Email</label>
+											<input name="email" id="email" type="email" placeholder="Email">
+										</div>
+										<div class="field">
+											<label for="message">Сообщение</label>
+											<textarea name="message" id="message" rows="6" placeholder="Сообщение"></textarea>
+										</div>
+										<ul class="actions">
+											<li><input value="Отправить" class="button" type="submit"></li>
+										</ul>
+									</form>
+								</div>
 
-			<!-- Main Menu -->
-			<div id="menu">
-				<a class="mh" href="{% url 'base' %}">Главная</a>
-				<a class="mt" href="{% url 'post_list' %}">Блог</a>
-				<a class="mw" href="{% url 'gallery' %}">Галерея</a>
-                {% if user.is_authenticated %}
-                    <a class="mi" href="{% url 'logout' %}">Выйти</a>
-                {% else%}
-                    <a class="mi" href="{% url 'login' %}">Войти</a>
-                {% endif %}
-			</div>
+						</section>
+
+					<!-- Footer -->
+						<footer id="footer">
+							<div class="copyright">
+								&copy; Design and production: <a href="https://templated.co/">EugeneZ</a>.
+							</div>
+						</footer>
+				</section>
 		</div>
 
-		<!-- Container -->
-		<div id="cnt">
+		<!-- Scripts -->
+			<script src="{% static 'js/jquery.min.js' %}"></script>
+			<script src="{% static 'js/jquery.poptrox.min.js' %}"></script>
+			<script src="{% static 'js/jquery.scrolly.min.js' %}"></script>
+			<script src="{% static 'js/skel.min.js' %} assets/"></script>
+			<script src="{% static 'js/util.js' %} assets/"></script>
+			<script src="{% static 'js/main.js' %} assets/"></script>
 
-			<!-- Left Container -->
-			<div id="lcnt">
-
-				<!-- Post -->
-				<div class="post">
-
-					<!-- Photo Details -->
-					<div class="col-lg-12">
-                        <h1 class="page-header">Галерея миниатюр</h1>
-                    </div>
-
-					<!-- Photo Content -->
-                    {% block photo %}{% endblock %}
-				</div>
-			</div>
-
-{#				<!-- Blog Categories -->#}
-{##}
-				<h3 align="center">Страны</h3>
-                    {% for c in countries %}
-                        <a class="pop_posts" href="{% url "country" id=c.pk %}"> тест вывода стран </a>
-                    {% endfor %}
-                <br/>
-
-			</div>
-			<br style="clear: both;"/>
-
-		</div>
-
-
-
-	<!-- Footer -->
-	<div id="foo">
-
-		<!-- Footer Container -->
-		<div id="foo_d">
-
-			<!-- Footer Menu -->
-			<div id="foo_menu">
-
-				<a href="{% url 'base' %}">Главная</a><span>.</span>
-				<a href="{% url 'post_list' %}">Блог</a><span>.</span>
-				<a href="{% url 'gallery' %}">Галерея</a><span>.</span>
-				<a href="#">Вдохновляющее</a><span>.</span>
-				<a href="#">Заходите в гости</a><span>.</span>
-				<a href="#">Контактная информация</a>
-
-			</div>
-			<p>&copy;2016 J0nnyZ website <a target="_blank" href="http://dryicons.com">Понравился сайт? Закажите себе</a></p>
-
-		</div>
-
-	</div>
-
-</body>
-
+	</body>
 </html>
